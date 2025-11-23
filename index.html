@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化学课程 - 交互式学习系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>🧪 化学课程</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="showSection('home')">首页</a></li>
+                <li><a href="#atomic-world" onclick="showSection('atomic-world')">原子世界</a></li>
+                <li><a href="#chemical-bonds" onclick="showSection('chemical-bonds')">化学键</a></li>
+                <li><a href="#reactions" onclick="showSection('reactions')">反应原理</a></li>
+                <li><a href="#elements" onclick="showSection('elements')">元素王国</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页 -->
+    <section id="home" class="section active">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>探索化学的奇妙世界</h1>
+                <p class="hero-description">
+                    从微观原子到宏观物质，从简单反应到复杂变化<br>
+                    让我们一起揭开化学的神秘面纱
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">核心章节</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">交互模型</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">化学概念</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 课程框架网格 -->
+        <div class="framework-grid">
+            <div class="framework-card" onclick="showSection('atomic-world')">
+                <div class="card-icon">⚛️</div>
+                <h3>第一章：原子世界</h3>
+                <p>探索构成万物的基本粒子，了解原子结构、电子排布和元素周期律</p>
+                <div class="card-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                    <span>100% 完成</span>
+                </div>
+            </div>
+
+            <div class="framework-card" onclick="showSection('chemical-bonds')">
+                <div class="card-icon">🔗</div>
+                <h3>第二章：化学键</h3>
+                <p>学习离子键、共价键、金属键的形成原理和分子几何构型</p>
+                <div class="card-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <span>待开发</span>
+                </div>
+            </div>
+
+            <div class="framework-card" onclick="showSection('reactions')">
+                <div class="card-icon">⚡</div>
+                <h3>第三章：反应原理</h3>
+                <p>掌握化学反应类型、能量变化、反应速率和化学平衡原理</p>
+                <div class="card-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <span>待开发</span>
+                </div>
+            </div>
+
+            <div class="framework-card" onclick="showSection('elements')">
+                <div class="card-icon">👑</div>
+                <h3>第四章：元素王国</h3>
+                <p>认识金属、非金属元素家族，了解有机化学基础和应用</p>
+                <div class="card-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <span>待开发</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数学公式示例 -->
+        <div class="math-example">
+            <h3>化学中的数学之美</h3>
+            <div class="formula-grid">
+                <div class="formula-item">
+                    <div class="formula">$$E = mc^2$$</div>
+                    <p>质能方程</p>
+                </div>
+                <div class="formula-item">
+                    <div class="formula">$$PV = nRT$$</div>
+                    <p>理想气体状态方程</p>
+                </div>
+                <div class="formula-item">
+                    <div class="formula">$$\Delta G = \Delta H - T\Delta S$$</div>
+                    <p>吉布斯自由能</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 原子世界部分 -->
+    <section id="atomic-world" class="section">
+        <div class="chapter-header">
+            <h2>第一章：原子世界</h2>
+            <p class="chapter-description">探索构成万物的基本粒子</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="text-content">
+                <h3>🧩 原子结构</h3>
+                <p>原子是化学变化中的最小粒子，由原子核和核外电子构成：</p>
+                <ul>
+                    <li><strong>质子</strong>：带正电，决定元素种类</li>
+                    <li><strong>中子</strong>：不带电，影响原子质量</li>
+                    <li><strong>电子</strong>：带负电，决定化学性质</li>
+                </ul>
+
+                <div class="formula-card">
+                    <div class="formula-title">原子构成公式</div>
+                    <div class="formula">$$原子序数 = 质子数 = 核外电子数$$</div>
+                    <div class="formula">$$质量数 = 质子数 + 中子数$$</div>
+                </div>
+
+                <h4>同位素概念</h4>
+                <p>具有相同质子数、不同中子数的同一元素的不同原子互称为同位素。</p>
+                <div class="example">
+                    <strong>示例：</strong>氢的三种同位素：氕(H)、氘(D)、氚(T)
+                </div>
+            </div>
+
+            <div class="visual-content">
+                <div class="interactive-model">
+                    <h4>原子结构交互模型</h4>
+                <div class="model-controls">
+                    <label for="element-select">选择元素：</label>
+                    <select id="element-select" onchange="updateAtomModel(this.value)">
+                        <option value="H">氢 (H)</option>
+                        <option value="He">氦 (He)</option>
+                        <option value="Li" selected>锂 (Li)</option>
+                        <option value="Be">铍 (Be)</option>
+                        <option value="B">硼 (B)</option>
+                        <option value="C">碳 (C)</option>
+                        <option value="N">氮 (N)</option>
+                        <option value="O">氧 (O)</option>
+                        <option value="F">氟 (F)</option>
+                        <option value="Ne">氖 (Ne)</option>
+                        <option value="Na">钠 (Na)</option>
+                        <option value="Mg">镁 (Mg)</option>
+                        <option value="Al">铝 (Al)</option>
+                        <option value="Si">硅 (Si)</option>
+                        <option value="P">磷 (P)</option>
+                        <option value="S">硫 (S)</option>
+                        <option value="Cl">氯 (Cl)</option>
+                        <option value="Ar">氩 (Ar)</option>
+                        <option value="K">钾 (K)</option>
+                        <option value="Ca">钙 (Ca)</option>
+                        <option value="Sc">钪 (Sc)</option>
+                        <option value="Ti">钛 (Ti)</option>
+                        <option value="V">钒 (V)</option>
+                        <option value="Cr">铬 (Cr)</option>
+                        <option value="Mn">锰 (Mn)</option>
+                        <option value="Fe">铁 (Fe)</option>
+                        <option value="Co">钴 (Co)</option>
+                        <option value="Ni">镍 (Ni)</option>
+                        <option value="Cu">铜 (Cu)</option>
+                        <option value="Zn">锌 (Zn)</option>
+                        <option value="Ga">镓 (Ga)</option>
+                        <option value="Ge">锗 (Ge)</option>
+                        <option value="As">砷 (As)</option>
+                        <option value="Se">硒 (Se)</option>
+                        <option value="Br">溴 (Br)</option>
+                        <option value="Kr">氪 (Kr)</option>
+                    </select>
+                </div>
+                    <div id="atom-model" class="atom-model">
+                        <!-- 原子模型将通过JavaScript动态生成 -->
+                    </div>
+                    <div id="atom-info" class="atom-info">
+                        <!-- 元素信息将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 电子排布部分 -->
+        <div class="content-grid">
+            <div class="visual-content">
+                <div class="electron-configuration">
+                    <h4>电子排布规律</h4>
+                    <div class="electron-shells">
+                        <div class="shell" data-shell="K">K层 (最多2e⁻)</div>
+                        <div class="shell" data-shell="L">L层 (最多8e⁻)</div>
+                        <div class="shell" data-shell="M">M层 (最多18e⁻)</div>
+                        <div class="shell" data-shell="N">N层 (最多32e⁻)</div>
+                    </div>
+                    <div class="filling-rules">
+                        <h5>填充规则：</h5>
+                        <ul>
+                            <li>能量最低原理</li>
+                            <li>泡利不相容原理</li>
+                            <li>洪特规则</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-content">
+                <h3>⚡ 电子排布</h3>
+                <p>核外电子按照特定规则分层排布：</p>
+
+                <div class="principle-card">
+                    <h5>能量最低原理</h5>
+                    <p>电子优先占据能量较低的轨道</p>
+                </div>
+
+                <div class="principle-card">
+                    <h5>泡利不相容原理</h5>
+                    <p>同一轨道最多容纳2个自旋方向相反的电子</p>
+                </div>
+
+                <div class="principle-card">
+                    <h5>洪特规则</h5>
+                    <p>电子在等价轨道上尽可能分占不同轨道且自旋平行</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 元素周期表部分 -->
+        <div class="periodic-table-section">
+            <h3>🗺️ 元素周期表 - 化学的"地图"</h3>
+
+            <div class="periodic-table-intro">
+                <div class="pt-info">
+                    <h4>周期表规律</h4>
+                    <ul>
+                        <li><strong>周期</strong>：电子层数相同，从左到右金属性减弱</li>
+                        <li><strong>族</strong>：最外层电子数相同，化学性质相似</li>
+                        <li><strong>分区</strong>：s区、p区、d区、f区</li>
+                    </ul>
+                </div>
+                <div class="pt-preview" id="pt-preview">
+                    <!-- 简化周期表将通过JavaScript生成 -->
+                </div>
+            </div>
+
+            <div class="trends">
+                <h4>周期性变化规律</h4>
+                <div class="trend-grid">
+                    <div class="trend-item">
+                        <h5>原子半径</h5>
+                        <p>同周期↘，同主族↗</p>
+                    </div>
+                    <div class="trend-item">
+                        <h5>金属性</h5>
+                        <p>同周期↘，同主族↗</p>
+                    </div>
+                    <div class="trend-item">
+                        <h5>电负性</h5>
+                        <p>同周期↗，同主族↘</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 元素性质对比表格 -->
+        <div class="element-comparison">
+            <h3>📊 元素性质对比</h3>
+            <div class="comparison-table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>元素</th>
+                            <th>原子序数</th>
+                            <th>相对原子质量</th>
+                            <th>电子排布</th>
+                            <th>元素类别</th>
+                            <th>电负性</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparison-table-body">
+                        <!-- 表格数据将通过JavaScript动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="comparison-notes">
+                <p><strong>说明：</strong>电负性数值越大，表示原子吸引电子的能力越强。氟(F)是电负性最强的元素。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 化学键章节（待开发） -->
+    <section id="chemical-bonds" class="section">
+        <div class="chapter-header">
+            <h2>第二章：化学键</h2>
+            <p class="chapter-description">探索原子如何结合形成分子</p>
+        </div>
+        
+        <div class="coming-soon">
+            <div class="coming-soon-content">
+                <h3>🚧 章节开发中</h3>
+                <p>化学键章节正在积极开发中，将包含：</p>
+                <ul>
+                    <li>离子键形成动画</li>
+                    <li>共价键电子云可视化</li>
+                    <li>分子几何构型查看器</li>
+                    <li>分子间作用力模拟</li>
+                </ul>
+                <p>敬请期待！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 反应原理章节（待开发） -->
+    <section id="reactions" class="section">
+        <div class="chapter-header">
+            <h2>第三章：反应原理</h2>
+            <p class="chapter-description">理解化学变化的本质</p>
+        </div>
+        
+        <div class="coming-soon">
+            <div class="coming-soon-content">
+                <h3>🚧 章节开发中</h3>
+                <p>反应原理章节正在积极开发中，将包含：</p>
+                <ul>
+                    <li>反应类型分类动画</li>
+                    <li>能量变化可视化</li>
+                    <li>反应速率影响因素实验</li>
+                    <li>化学平衡动态演示</li>
+                </ul>
+                <p>敬请期待！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 元素王国章节（待开发） -->
+    <section id="elements" class="section">
+        <div class="chapter-header">
+            <h2>第四章：元素王国</h2>
+            <p class="chapter-description">认识丰富多彩的元素世界</p>
+        </div>
+        
+        <div class="coming-soon">
+            <div class="coming-soon-content">
+                <h3>🚧 章节开发中</h3>
+                <p>元素王国章节正在积极开发中，将包含：</p>
+                <ul>
+                    <li>金属元素家族介绍</li>
+                    <li>非金属元素性质展示</li>
+                    <li>有机化学基础</li>
+                    <li>元素应用案例库</li>
+                </ul>
+                <p>敬请期待！</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
