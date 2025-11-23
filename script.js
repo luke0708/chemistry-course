@@ -288,4 +288,569 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // 初始化化学键章节
+    showBondAnimation('ionic');
+    showCovalentBond('h2');
+    showMolecularGeometry('linear');
+    showIntermolecularForces('vdw');
 });
+
+// 化学键章节功能
+
+// 显示化学键动画
+function showBondAnimation(bondType) {
+    const animation = document.getElementById('bond-animation');
+    const info = document.getElementById('bond-info');
+    
+    let animationHTML = '';
+    let infoHTML = '';
+
+    switch(bondType) {
+        case 'ionic':
+            animationHTML = `
+                <div class="bond-visualization">
+                    <div class="atom-pair">
+                        <div class="atom na-atom" data-atom="Na">Na</div>
+                        <div class="electron-transfer">→ e⁻ →</div>
+                        <div class="atom cl-atom" data-atom="Cl">Cl</div>
+                    </div>
+                    <div class="ion-pair">
+                        <div class="ion na-ion">Na⁺</div>
+                        <div class="bond-line">+</div>
+                        <div class="ion cl-ion">Cl⁻</div>
+                    </div>
+                    <div class="ionic-compound">NaCl</div>
+                </div>
+            `;
+            infoHTML = `
+                <h4>离子键信息</h4>
+                <p><strong>形成过程：</strong>钠原子失去一个电子形成Na⁺，氯原子获得一个电子形成Cl⁻</p>
+                <p><strong>电负性差：</strong>3.16 - 0.93 = 2.23 (>1.7，典型离子键)</p>
+                <p><strong>键能：</strong>约787 kJ/mol</p>
+            `;
+            break;
+        
+        case 'covalent':
+            animationHTML = `
+                <div class="bond-visualization">
+                    <div class="molecule-water">
+                        <div class="atom o-atom">O</div>
+                        <div class="bond-lines">
+                            <div class="bond covalent-bond">H</div>
+                            <div class="bond covalent-bond">H</div>
+                        </div>
+                    </div>
+                    <div class="electron-pairs">
+                        <div class="electron-pair">共用电子对</div>
+                    </div>
+                </div>
+            `;
+            infoHTML = `
+                <h4>共价键信息</h4>
+                <p><strong>形成过程：</strong>氧原子与氢原子共用电子对</p>
+                <p><strong>电负性差：</strong>3.44 - 2.20 = 1.24 (极性共价键)</p>
+                <p><strong>键角：</strong>104.5°</p>
+            `;
+            break;
+        
+        case 'metallic':
+            animationHTML = `
+                <div class="bond-visualization">
+                    <div class="metal-lattice">
+                        <div class="metal-ions">
+                            <div class="metal-ion">Cu²⁺</div>
+                            <div class="metal-ion">Cu²⁺</div>
+                            <div class="metal-ion">Cu²⁺</div>
+                        </div>
+                        <div class="electron-sea">
+                            <div class="electron-dot">e⁻</div>
+                            <div class="electron-dot">e⁻</div>
+                            <div class="electron-dot">e⁻</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            infoHTML = `
+                <h4>金属键信息</h4>
+                <p><strong>形成过程：</strong>金属原子释放价电子形成电子海</p>
+                <p><strong>特点：</strong>正离子沉浸在电子海中</p>
+                <p><strong>性质：</strong>导电性、延展性、金属光泽</p>
+            `;
+            break;
+    }
+
+    animation.innerHTML = animationHTML;
+    info.innerHTML = infoHTML;
+}
+
+// 显示共价键可视化
+function showCovalentBond(molecule) {
+    const visualization = document.getElementById('covalent-visualization');
+    
+    let visualizationHTML = '';
+
+    switch(molecule) {
+        case 'h2':
+            visualizationHTML = `
+                <div class="molecule-model">
+                    <div class="atom hydrogen">H</div>
+                    <div class="bond single-bond">—</div>
+                    <div class="atom hydrogen">H</div>
+                    <div class="electron-cloud">
+                        <div class="cloud-label">电子云重叠区域</div>
+                    </div>
+                </div>
+                <div class="molecule-info">
+                    <p><strong>氢气分子 (H₂)</strong></p>
+                    <p>非极性共价键，键长74pm</p>
+                </div>
+            `;
+            break;
+        
+        case 'h2o':
+            visualizationHTML = `
+                <div class="molecule-model water">
+                    <div class="atom oxygen">O</div>
+                    <div class="bonds-water">
+                        <div class="bond covalent-bond">H</div>
+                        <div class="bond covalent-bond">H</div>
+                    </div>
+                    <div class="electron-cloud water-cloud">
+                        <div class="cloud-label">极性分子</div>
+                    </div>
+                </div>
+                <div class="molecule-info">
+                    <p><strong>水分子 (H₂O)</strong></p>
+                    <p>极性共价键，键角104.5°</p>
+                </div>
+            `;
+            break;
+        
+        case 'co2':
+            visualizationHTML = `
+                <div class="molecule-model co2">
+                    <div class="bond double-bond">O</div>
+                    <div class="atom carbon">C</div>
+                    <div class="bond double-bond">O</div>
+                </div>
+                <div class="molecule-info">
+                    <p><strong>二氧化碳分子 (CO₂)</strong></p>
+                    <p>直线形，非极性分子</p>
+                </div>
+            `;
+            break;
+        
+        case 'nh3':
+            visualizationHTML = `
+                <div class="molecule-model ammonia">
+                    <div class="atom nitrogen">N</div>
+                    <div class="bonds-ammonia">
+                        <div class="bond covalent-bond">H</div>
+                        <div class="bond covalent-bond">H</div>
+                        <div class="bond covalent-bond">H</div>
+                    </div>
+                </div>
+                <div class="molecule-info">
+                    <p><strong>氨分子 (NH₃)</strong></p>
+                    <p>三角锥形，极性分子</p>
+                </div>
+            `;
+            break;
+    }
+
+    visualization.innerHTML = visualizationHTML;
+}
+
+// 显示分子几何构型
+function showMolecularGeometry(geometry) {
+    const visualization = document.getElementById('geometry-visualization');
+    
+    let visualizationHTML = '';
+
+    switch(geometry) {
+        case 'linear':
+            visualizationHTML = `
+                <div class="geometry-model linear">
+                    <div class="central-atom">C</div>
+                    <div class="bond-line horizontal">O</div>
+                    <div class="bond-line horizontal reverse">O</div>
+                </div>
+                <div class="geometry-info">
+                    <p><strong>直线形</strong></p>
+                    <p>电子对数：2，孤电子对数：0</p>
+                    <p>示例：CO₂，键角180°</p>
+                </div>
+            `;
+            break;
+        
+        case 'bent':
+            visualizationHTML = `
+                <div class="geometry-model bent">
+                    <div class="central-atom">O</div>
+                    <div class="bond-line angled">H</div>
+                    <div class="bond-line angled reverse">H</div>
+                    <div class="lone-pairs">
+                        <div class="lone-pair">孤电子对</div>
+                        <div class="lone-pair">孤电子对</div>
+                    </div>
+                </div>
+                <div class="geometry-info">
+                    <p><strong>V形</strong></p>
+                    <p>电子对数：4，孤电子对数：2</p>
+                    <p>示例：H₂O，键角104.5°</p>
+                </div>
+            `;
+            break;
+        
+        case 'trigonal':
+            visualizationHTML = `
+                <div class="geometry-model trigonal">
+                    <div class="central-atom">N</div>
+                    <div class="bond-line pyramid">H</div>
+                    <div class="bond-line pyramid">H</div>
+                    <div class="bond-line pyramid">H</div>
+                    <div class="lone-pair">孤电子对</div>
+                </div>
+                <div class="geometry-info">
+                    <p><strong>三角锥形</strong></p>
+                    <p>电子对数：4，孤电子对数：1</p>
+                    <p>示例：NH₃，键角107°</p>
+                </div>
+            `;
+            break;
+        
+        case 'tetrahedral':
+            visualizationHTML = `
+                <div class="geometry-model tetrahedral">
+                    <div class="central-atom">C</div>
+                    <div class="bond-line tetra">H</div>
+                    <div class="bond-line tetra">H</div>
+                    <div class="bond-line tetra">H</div>
+                    <div class="bond-line tetra">H</div>
+                </div>
+                <div class="geometry-info">
+                    <p><strong>四面体形</strong></p>
+                    <p>电子对数：4，孤电子对数：0</p>
+                    <p>示例：CH₄，键角109.5°</p>
+                </div>
+            `;
+            break;
+    }
+
+    visualization.innerHTML = visualizationHTML;
+}
+
+// 显示分子间作用力
+function showIntermolecularForces(forceType) {
+    const visualization = document.getElementById('forces-visualization');
+    const description = document.getElementById('force-description');
+    
+    let visualizationHTML = '';
+    let descriptionText = '';
+
+    switch(forceType) {
+        case 'vdw':
+            visualizationHTML = `
+                <div class="force-model vdw">
+                    <div class="molecule nonpolar">CH₄</div>
+                    <div class="force-lines">
+                        <div class="force-line">范德华力</div>
+                    </div>
+                    <div class="molecule nonpolar">CH₄</div>
+                </div>
+            `;
+            descriptionText = '范德华力：所有分子间都存在的作用力，包括取向力、诱导力和色散力。色散力是最主要的范德华力。';
+            break;
+        
+        case 'hydrogen':
+            visualizationHTML = `
+                <div class="force-model hydrogen">
+                    <div class="molecule water">H₂O</div>
+                    <div class="hydrogen-bond">氢键</div>
+                    <div class="molecule water">H₂O</div>
+                </div>
+            `;
+            descriptionText = '氢键：特殊的分子间作用力，存在于H与N、O、F之间。比范德华力强，显著影响物质性质。';
+            break;
+        
+        case 'dipole':
+            visualizationHTML = `
+                <div class="force-model dipole">
+                    <div class="molecule polar">HCl</div>
+                    <div class="dipole-interaction">偶极-偶极作用</div>
+                    <div class="molecule polar">HCl</div>
+                </div>
+            `;
+            descriptionText = '偶极-偶极作用：极性分子间的相互作用，分子永久偶极间的静电吸引。';
+            break;
+    }
+
+    visualization.innerHTML = visualizationHTML;
+    description.textContent = descriptionText;
+}
+
+// 离子键动画控制
+function startIonicAnimation() {
+    const animation = document.getElementById('ionic-animation');
+    animation.innerHTML = `
+        <div class="ionic-animation">
+            <div class="step step1">
+                <div class="atom na">Na</div>
+                <div class="atom cl">Cl</div>
+                <div class="label">步骤1：原子接近</div>
+            </div>
+            <div class="step step2">
+                <div class="electron-transfer">
+                    <div class="electron">e⁻</div>
+                    <div class="arrow">→</div>
+                </div>
+                <div class="label">步骤2：电子转移</div>
+            </div>
+            <div class="step step3">
+                <div class="ion na-ion">Na⁺</div>
+                <div class="ion cl-ion">Cl⁻</div>
+                <div class="label">步骤3：形成离子</div>
+            </div>
+            <div class="step step4">
+                <div class="crystal">NaCl晶体</div>
+                <div class="label">步骤4：形成离子晶体</div>
+            </div>
+        </div>
+    `;
+}
+
+function resetIonicAnimation() {
+    const animation = document.getElementById('ionic-animation');
+    animation.innerHTML = '<p>点击"开始动画"查看离子键形成过程</p>';
+}
+
+// 化学键能量计算器
+function calculateBondEnergy() {
+    const bondType = document.getElementById('bond-type').value;
+    const bondCount = parseInt(document.getElementById('bond-count').value);
+    
+    const bondEnergies = {
+        'H-H': 436,
+        'O=O': 498,
+        'N≡N': 945,
+        'C-C': 347,
+        'C=O': 799
+    };
+    
+    const energy = bondEnergies[bondType] * bondCount;
+    const result = document.getElementById('energy-result');
+    
+    result.innerHTML = `
+        <div class="energy-result">
+            <h5>计算结果</h5>
+            <p>化学键类型：${bondType}</p>
+            <p>化学键数量：${bondCount}</p>
+            <p>总键能：<strong>${energy} kJ/mol</strong></p>
+            <p class="energy-note">注：键能越大，化学键越稳定</p>
+        </div>
+    `;
+}
+
+// 分子极性实验
+function runPolarityExperiment(molecule) {
+    const container = document.getElementById('molecule-container');
+    const result = document.getElementById('experiment-result');
+    
+    const polarityData = {
+        'h2o': { name: '水 (H₂O)', polar: true, reason: 'V形结构，正负电荷中心不重合' },
+        'co2': { name: '二氧化碳 (CO₂)', polar: false, reason: '直线形结构，正负电荷中心重合' },
+        'nh3': { name: '氨 (NH₃)', polar: true, reason: '三角锥形结构，正负电荷中心不重合' },
+        'ch4': { name: '甲烷 (CH₄)', polar: false, reason: '四面体结构，正负电荷中心重合' },
+        'hcl': { name: '氯化氢 (HCl)', polar: true, reason: '直线形但电负性差异大，正负电荷中心不重合' }
+    };
+    
+    const data = polarityData[molecule];
+    
+    container.innerHTML = `
+        <div class="molecule ${data.polar ? 'polar' : 'nonpolar'}">
+            ${data.name}
+        </div>
+    `;
+    
+    result.innerHTML = `
+        <div class="experiment-analysis">
+            <h5>实验结果分析</h5>
+            <p>分子：${data.name}</p>
+            <p>极性：<strong>${data.polar ? '极性分子' : '非极性分子'}</strong></p>
+            <p>原因：${data.reason}</p>
+            <p>电场中表现：${data.polar ? '会偏转' : '不会偏转'}</p>
+        </div>
+    `;
+}
+
+// 化学键类型测验
+let currentQuestion = 0;
+let score = 0;
+const quizQuestions = [
+    {
+        question: "NaCl（氯化钠）中的化学键类型是？",
+        options: ["离子键", "共价键", "金属键", "氢键"],
+        answer: 0
+    },
+    {
+        question: "H₂O（水）分子中的化学键类型是？",
+        options: ["离子键", "共价键", "金属键", "范德华力"],
+        answer: 1
+    },
+    {
+        question: "铜金属中的化学键类型是？",
+        options: ["离子键", "共价键", "金属键", "氢键"],
+        answer: 2
+    },
+    {
+        question: "下列哪种物质中存在氢键？",
+        options: ["NaCl", "H₂O", "CH₄", "CO₂"],
+        answer: 1
+    },
+    {
+        question: "CO₂（二氧化碳）分子的几何构型是？",
+        options: ["直线形", "V形", "三角锥形", "四面体形"],
+        answer: 0
+    }
+];
+
+function startQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    document.getElementById('quiz-score').textContent = '0';
+    document.getElementById('start-quiz-btn').style.display = 'none';
+    showQuestion();
+}
+
+function showQuestion() {
+    const question = quizQuestions[currentQuestion];
+    const options = document.getElementById('quiz-options');
+    
+    document.getElementById('question-text').textContent = question.question;
+    
+    options.innerHTML = '';
+    question.options.forEach((option, index) => {
+        options.innerHTML += `
+            <label class="quiz-option">
+                <input type="radio" name="answer" value="${index}">
+                ${option}
+            </label>
+        `;
+    });
+    
+    document.getElementById('next-btn').style.display = 'none';
+}
+
+function checkAnswer() {
+    const selected = document.querySelector('input[name="answer"]:checked');
+    if (!selected) {
+        alert('请选择一个答案！');
+        return;
+    }
+    
+    const answerIndex = parseInt(selected.value);
+    const question = quizQuestions[currentQuestion];
+    
+    if (answerIndex === question.answer) {
+        score++;
+        document.getElementById('quiz-score').textContent = score;
+        document.getElementById('quiz-result').innerHTML = '<p class="correct">✓ 回答正确！</p>';
+    } else {
+        document.getElementById('quiz-result').innerHTML = `
+            <p class="incorrect">✗ 回答错误！正确答案是：${question.options[question.answer]}</p>
+        `;
+    }
+    
+    document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion < quizQuestions.length) {
+        showQuestion();
+        document.getElementById('quiz-result').innerHTML = '';
+    } else {
+        finishQuiz();
+    }
+}
+
+function finishQuiz() {
+    const result = document.getElementById('quiz-result');
+    const percentage = (score / quizQuestions.length) * 100;
+    
+    let message = '';
+    if (percentage >= 80) {
+        message = '🎉 优秀！你对化学键的理解很深入！';
+    } else if (percentage >= 60) {
+        message = '👍 良好！继续努力！';
+    } else {
+        message = '💪 加油！建议复习一下化学键相关知识。';
+    }
+    
+    result.innerHTML = `
+        <div class="quiz-summary">
+            <h5>测验完成！</h5>
+            <p>得分：${score}/${quizQuestions.length} (${percentage}%)</p>
+            <p>${message}</p>
+            <button onclick="startQuiz()">重新测验</button>
+        </div>
+    `;
+    
+    document.getElementById('start-quiz-btn').style.display = 'inline-block';
+}
+
+// 化学键应用案例可视化
+function showApplication(appType) {
+    const visual = document.getElementById('application-visual');
+    const info = document.getElementById('application-info');
+    
+    const applications = {
+        'salt': {
+            visual: `
+                <div class="crystal-structure">
+                    <div class="na-ion">Na⁺</div>
+                    <div class="cl-ion">Cl⁻</div>
+                    <div class="crystal-label">NaCl晶体结构</div>
+                </div>
+            `,
+            info: '食盐晶体中，Na⁺和Cl⁻通过离子键形成规则的立方晶格结构，赋予食盐高熔点、易溶于水的特性。'
+        },
+        'plastic': {
+            visual: `
+                <div class="polymer-chain">
+                    <div class="carbon-atom">C</div>
+                    <div class="carbon-atom">C</div>
+                    <div class="carbon-atom">C</div>
+                    <div class="chain-label">聚乙烯分子链</div>
+                </div>
+            `,
+            info: '聚乙烯中的碳碳共价键形成长链分子，这些分子通过范德华力相互缠绕，赋予塑料柔韧性和耐用性。'
+        },
+        'copper': {
+            visual: `
+                <div class="metal-lattice-app">
+                    <div class="cu-ion">Cu²⁺</div>
+                    <div class="electron-dot-app">e⁻</div>
+                    <div class="lattice-label">铜金属晶格</div>
+                </div>
+            `,
+            info: '铜金属中，Cu²⁺离子沉浸在电子海中，金属键使电子可以自由移动，赋予铜优良的导电性和延展性。'
+        },
+        'dna': {
+            visual: `
+                <div class="dna-structure">
+                    <div class="base-pair">A-T</div>
+                    <div class="hydrogen-bond-app">氢键</div>
+                    <div class="base-pair">G-C</div>
+                    <div class="dna-label">DNA碱基对</div>
+                </div>
+            `,
+            info: 'DNA双螺旋结构中，碱基对（A-T、G-C）通过氢键连接，维持了遗传信息的稳定性和特异性。'
+        }
+    };
+    
+    const app = applications[appType];
+    visual.innerHTML = app.visual;
+    info.textContent = app.info;
+}
