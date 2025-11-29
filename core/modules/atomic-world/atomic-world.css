@@ -316,7 +316,6 @@
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }
@@ -345,6 +344,18 @@
     font-size: 0.6rem;
     font-weight: bold;
     box-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+    animation: electron-pulse 2s ease-in-out infinite;
+}
+
+@keyframes electron-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(79, 195, 247, 0.8);
+    }
 }
 
 .element-name {

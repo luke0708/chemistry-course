@@ -114,10 +114,58 @@ const ModuleManager = {
             const section = document.getElementById(moduleId);
             if (section) {
                 section.innerHTML = html;
+                
+                // 在HTML加载完成后立即初始化模块
+                // 使用setTimeout确保DOM更新完成
+                setTimeout(() => {
+                    this._initializeModule(moduleId);
+                }, 0);
             }
         } catch (error) {
             console.error(`Failed to load HTML for module ${moduleId}:`, error);
             throw error;
+        }
+    },
+
+    /**
+     * 初始化模块
+     * @param {string} moduleId - 模块ID
+     */
+    _initializeModule(moduleId) {
+        console.log(`初始化模块: ${moduleId}`);
+        
+        // 使用更可靠的初始化方式，确保依赖已加载
+        const initializeWithRetry = (moduleName, initFunction, retryCount = 0) => {
+            if (window[moduleName] && typeof window[moduleName].init === 'function') {
+                console.log(`开始初始化${moduleName}模块`);
+                try {
+                    window[moduleName].init();
+                } catch (error) {
+                    console.error(`${moduleName}模块初始化失败:`, error);
+                    // 如果初始化失败，重试一次
+                    if (retryCount < 2) {
+                        console.log(`重试初始化${moduleName}模块 (${retryCount + 1}/2)`);
+                        setTimeout(() => initializeWithRetry(moduleName, initFunction, retryCount + 1), 100);
+                    }
+                }
+            } else if (retryCount < 5) {
+                // 如果模块未加载，等待一下再重试
+                console.log(`等待${moduleName}模块加载 (${retryCount + 1}/5)`);
+                setTimeout(() => initializeWithRetry(moduleName, initFunction, retryCount + 1), 50);
+            } else {
+                console.error(`${moduleName}模块未找到或init方法不存在`);
+            }
+        };
+
+        // 根据模块ID调用对应的初始化函数
+        switch (moduleId) {
+            case 'atomic-world':
+                initializeWithRetry('AtomicWorld');
+                break;
+            case 'chemical-bonds':
+                initializeWithRetry('ChemicalBonds');
+                break;
+            // 其他模块的初始化...
         }
     },
 
@@ -156,6 +204,24 @@ const SectionManager = {
 
         // 隐藏当前章节
         this.hideCurrentSection();
+
+        // 特殊处理：首页和未开发章节不需要模块加载
+        if (sectionId === 'home' || sectionId === 'reactions' || sectionId === 'elements') {
+            this.displaySection(sectionId);
+            this.updateNavActiveState(sectionId);
+            this.currentSection = sectionId;
+            window.scrollTo(0, 0);
+            return;
+        }
+
+        // 如果模块已经加载，直接显示内容
+        if (ModuleManager.isModuleLoaded(sectionId)) {
+            this.displaySection(sectionId);
+            this.updateNavActiveState(sectionId);
+            this.currentSection = sectionId;
+            window.scrollTo(0, 0);
+            return;
+        }
 
         // 显示加载状态
         this.showLoadingState(sectionId);

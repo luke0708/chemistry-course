@@ -9,7 +9,7 @@ const AtomicWorld = {
     async init() {
         try {
             // 加载元素数据
-            this.elementsData = await Utils.loadJSON('assets/data/elements.json');
+            this.elementsData = await Utils.loadJSON('../assets/elements.json');
             
             // 初始化原子模型
             this.updateAtomModel('Li');
@@ -291,21 +291,9 @@ const AtomicWorld = {
 };
 
 // 模块加载完成后自动初始化
-document.addEventListener('DOMContentLoaded', function() {
-    // 等待共享工具加载完成
-    if (window.Utils && window.Constants) {
-        AtomicWorld.init();
-    } else {
-        // 如果共享工具尚未加载，等待一下
-        setTimeout(() => {
-            if (window.Utils && window.Constants) {
-                AtomicWorld.init();
-            } else {
-                console.error('共享工具未正确加载');
-            }
-        }, 100);
-    }
-});
+// 注意：在模块化版本中，模块是在动态加载后初始化的
+// 这个事件监听器在模块化版本中不会触发，因为模块是在DOM加载完成后才动态加载的
+// 模块初始化由core.js中的ModuleManager负责
 
 // 全局导出
 window.AtomicWorld = AtomicWorld;
