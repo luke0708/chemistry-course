@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化学课程 - 交互式学习系统</title>
+    
+    <!-- 核心样式 -->
+    <link rel="stylesheet" href="core.css">
+    
+    <!-- MathJax 数学公式支持 -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>🧪 化学课程</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#atomic-world">原子世界</a></li>
+                <li><a href="#chemical-bonds">化学键</a></li>
+                <li><a href="#reactions">反应原理</a></li>
+                <li><a href="#elements">元素王国</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页 - 内置内容 -->
+    <section id="home" class="section active">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>探索化学的奇妙世界</h1>
+                <p class="hero-description">
+                    从微观原子到宏观物质，从简单反应到复杂变化<br>
+                    让我们一起揭开化学的神秘面纱
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">核心章节</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">交互模型</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">化学概念</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 课程框架网格 -->
+        <div class="framework-grid">
+            <div class="framework-card" onclick="showSection('atomic-world')">
+                <div class="card-icon">⚛️</div>
+                <h3>第一章：原子世界</h3>
+                <p>探索构成万物的基本粒子，了解原子结构、电子排布和元素周期律</p>
+                <div class="card-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                    <span>100% 完成</span>
+                </div>
+            </div>
+
+            <div class="framework-card" onclick="showSection('chemical-bonds')">
+                <div class="card-icon">🔗</div>
+                <h3>第二章：化学键</h3>
+                <p>学习离子键、共价键、金属键的形成原理和分子几何构型</p>
+                <div class="card-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                    <span>100% 完成</span>
+                </div>
+            </div>
+
+            <div class="framework-card" onclick="showSection('reactions')">
+                <div class="card-icon">⚡</div>
+                <h3>第三章：反应原理</h3>
+                <p>掌握化学反应类型、能量变化、反应速率和化学平衡原理</p>
+                <div class="card-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <span>待开发</span>
+                </div>
+            </div>
+
+            <div class="framework-card" onclick="showSection('elements')">
+                <div class="card-icon">👑</div>
+                <h3>第四章：元素王国</h3>
+                <p>认识金属、非金属元素家族，了解有机化学基础和应用</p>
+                <div class="card-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <span>待开发</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数学公式示例 -->
+        <div class="math-example">
+            <h3>化学中的数学之美</h3>
+            <div class="formula-grid">
+                <div class="formula-item">
+                    <div class="formula">$$E = mc^2$$</div>
+                    <p>质能方程</p>
+                </div>
+                <div class="formula-item">
+                    <div class="formula">$$PV = nRT$$</div>
+                    <p>理想气体状态方程</p>
+                </div>
+                <div class="formula-item">
+                    <div class="formula">$$\Delta G = \Delta H - T\Delta S$$</div>
+                    <p>吉布斯自由能</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 原子世界章节 - 动态加载 -->
+    <section id="atomic-world" class="section">
+        <!-- 内容将通过模块加载器动态加载 -->
+    </section>
+
+    <!-- 化学键章节 - 动态加载 -->
+    <section id="chemical-bonds" class="section">
+        <!-- 内容将通过模块加载器动态加载 -->
+    </section>
+
+    <!-- 反应原理章节 - 开发中 -->
+    <section id="reactions" class="section">
+        <div class="coming-soon">
+            <div class="coming-soon-content">
+                <h3>🚧 章节开发中</h3>
+                <p>反应原理章节正在积极开发中，将包含：</p>
+                <ul>
+                    <li>反应类型分类动画</li>
+                    <li>能量变化可视化</li>
+                    <li>反应速率影响因素实验</li>
+                    <li>化学平衡动态演示</li>
+                </ul>
+                <p>敬请期待！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 元素王国章节 - 开发中 -->
+    <section id="elements" class="section">
+        <div class="coming-soon">
+            <div class="coming-soon-content">
+                <h3>🚧 章节开发中</h3>
+                <p>元素王国章节正在积极开发中，将包含：</p>
+                <ul>
+                    <li>金属元素家族介绍</li>
+                    <li>非金属元素性质展示</li>
+                    <li>有机化学基础</li>
+                    <li>元素应用案例库</li>
+                </ul>
+                <p>敬请期待！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心脚本加载 -->
+    <script src="shared/utils.js"></script>
+    <script src="shared/constants.js"></script>
+    <script src="core.js"></script>
+</body>
+</html>

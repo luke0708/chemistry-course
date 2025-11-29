@@ -1,0 +1,185 @@
+<div class="chapter-header">
+    <h2>第一章：原子世界</h2>
+    <p class="chapter-description">探索构成万物的基本粒子</p>
+</div>
+
+<div class="content-grid">
+    <div class="text-content">
+        <h3>🧩 原子结构</h3>
+        <p>原子是化学变化中的最小粒子，由原子核和核外电子构成：</p>
+        <ul>
+            <li><strong>质子</strong>：带正电，决定元素种类</li>
+            <li><strong>中子</strong>：不带电，影响原子质量</li>
+            <li><strong>电子</strong>：带负电，决定化学性质</li>
+        </ul>
+
+        <div class="formula-card">
+            <div class="formula-title">原子构成公式</div>
+            <div class="formula">$$原子序数 = 质子数 = 核外电子数$$</div>
+            <div class="formula">$$质量数 = 质子数 + 中子数$$</div>
+        </div>
+
+        <h4>同位素概念</h4>
+        <p>具有相同质子数、不同中子数的同一元素的不同原子互称为同位素。</p>
+        <div class="example">
+            <strong>示例：</strong>氢的三种同位素：氕(H)、氘(D)、氚(T)
+        </div>
+    </div>
+
+    <div class="visual-content">
+        <div class="interactive-model">
+            <h4>原子结构交互模型</h4>
+            <div class="model-controls">
+                <label for="element-select">选择元素：</label>
+                <select id="element-select" onchange="AtomicWorld.updateAtomModel(this.value)">
+                    <option value="H">氢 (H)</option>
+                    <option value="He">氦 (He)</option>
+                    <option value="Li" selected>锂 (Li)</option>
+                    <option value="Be">铍 (Be)</option>
+                    <option value="B">硼 (B)</option>
+                    <option value="C">碳 (C)</option>
+                    <option value="N">氮 (N)</option>
+                    <option value="O">氧 (O)</option>
+                    <option value="F">氟 (F)</option>
+                    <option value="Ne">氖 (Ne)</option>
+                    <option value="Na">钠 (Na)</option>
+                    <option value="Mg">镁 (Mg)</option>
+                    <option value="Al">铝 (Al)</option>
+                    <option value="Si">硅 (Si)</option>
+                    <option value="P">磷 (P)</option>
+                    <option value="S">硫 (S)</option>
+                    <option value="Cl">氯 (Cl)</option>
+                    <option value="Ar">氩 (Ar)</option>
+                    <option value="K">钾 (K)</option>
+                    <option value="Ca">钙 (Ca)</option>
+                    <option value="Sc">钪 (Sc)</option>
+                    <option value="Ti">钛 (Ti)</option>
+                    <option value="V">钒 (V)</option>
+                    <option value="Cr">铬 (Cr)</option>
+                    <option value="Mn">锰 (Mn)</option>
+                    <option value="Fe">铁 (Fe)</option>
+                    <option value="Co">钴 (Co)</option>
+                    <option value="Ni">镍 (Ni)</option>
+                    <option value="Cu">铜 (Cu)</option>
+                    <option value="Zn">锌 (Zn)</option>
+                    <option value="Ga">镓 (Ga)</option>
+                    <option value="Ge">锗 (Ge)</option>
+                    <option value="As">砷 (As)</option>
+                    <option value="Se">硒 (Se)</option>
+                    <option value="Br">溴 (Br)</option>
+                    <option value="Kr">氪 (Kr)</option>
+                </select>
+            </div>
+            <div id="atom-model" class="atom-model">
+                <!-- 原子模型将通过JavaScript动态生成 -->
+            </div>
+            <div id="atom-info" class="atom-info">
+                <!-- 元素信息将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 电子排布部分 -->
+<div class="content-grid">
+    <div class="visual-content">
+        <div class="electron-configuration">
+            <h4>电子排布规律</h4>
+            <div class="electron-shells">
+                <div class="shell" data-shell="K">K层 (最多2e⁻)</div>
+                <div class="shell" data-shell="L">L层 (最多8e⁻)</div>
+                <div class="shell" data-shell="M">M层 (最多18e⁻)</div>
+                <div class="shell" data-shell="N">N层 (最多32e⁻)</div>
+            </div>
+            <div class="filling-rules">
+                <h5>填充规则：</h5>
+                <ul>
+                    <li>能量最低原理</li>
+                    <li>泡利不相容原理</li>
+                    <li>洪特规则</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-content">
+        <h3>⚡ 电子排布</h3>
+        <p>核外电子按照特定规则分层排布：</p>
+
+        <div class="principle-card">
+            <h5>能量最低原理</h5>
+            <p>电子优先占据能量较低的轨道</p>
+        </div>
+
+        <div class="principle-card">
+            <h5>泡利不相容原理</h5>
+            <p>同一轨道最多容纳2个自旋方向相反的电子</p>
+        </div>
+
+        <div class="principle-card">
+            <h5>洪特规则</h5>
+            <p>电子在等价轨道上尽可能分占不同轨道且自旋平行</p>
+        </div>
+    </div>
+</div>
+
+<!-- 元素周期表部分 -->
+<div class="periodic-table-section">
+    <h3>🗺️ 元素周期表 - 化学的"地图"</h3>
+
+    <div class="periodic-table-intro">
+        <div class="pt-info">
+            <h4>周期表规律</h4>
+            <ul>
+                <li><strong>周期</strong>：电子层数相同，从左到右金属性减弱</li>
+                <li><strong>族</strong>：最外层电子数相同，化学性质相似</li>
+                <li><strong>分区</strong>：s区、p区、d区、f区</li>
+            </ul>
+        </div>
+        <div class="pt-preview" id="pt-preview">
+            <!-- 简化周期表将通过JavaScript生成 -->
+        </div>
+    </div>
+
+    <div class="trends">
+        <h4>周期性变化规律</h4>
+        <div class="trend-grid">
+            <div class="trend-item">
+                <h5>原子半径</h5>
+                <p>同周期↘，同主族↗</p>
+            </div>
+            <div class="trend-item">
+                <h5>金属性</h5>
+                <p>同周期↘，同主族↗</p>
+            </div>
+            <div class="trend-item">
+                <h5>电负性</h5>
+                <p>同周期↗，同主族↘</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 元素性质对比表格 -->
+<div class="element-comparison">
+    <h3>📊 元素性质对比</h3>
+    <div class="comparison-table-container">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>元素</th>
+                    <th>原子序数</th>
+                    <th>相对原子质量</th>
+                    <th>电子排布</th>
+                    <th>元素类别</th>
+                    <th>电负性</th>
+                </tr>
+            </thead>
+            <tbody id="comparison-table-body">
+                <!-- 表格数据将通过JavaScript动态生成 -->
+            </tbody>
+        </table>
+    </div>
+    <div class="comparison-notes">
+        <p><strong>说明：</strong>电负性数值越大，表示原子吸引电子的能力越强。氟(F)是电负性最强的元素。</p>
+    </div>
+</div>

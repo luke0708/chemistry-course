@@ -1,0 +1,704 @@
+/* 化学键模块样式 */
+
+/* 化学键类型卡片 */
+.bond-type-card {
+    background: white;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bond-type-card h4 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+/* 化学键可视化 */
+.bond-visualization {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.atom-pair {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.atom {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.na-atom {
+    background: linear-gradient(135deg, #ff6b6b, #c44569);
+}
+
+.cl-atom {
+    background: linear-gradient(135deg, #4fc3f7, #0288d1);
+}
+
+.electron-transfer {
+    color: #666;
+    font-weight: bold;
+}
+
+.ion-pair {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.ion {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.na-ion {
+    background: linear-gradient(135deg, #ff6b6b, #c44569);
+}
+
+.cl-ion {
+    background: linear-gradient(135deg, #4fc3f7, #0288d1);
+}
+
+.bond-line {
+    font-weight: bold;
+    color: #666;
+}
+
+.ionic-compound {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 1rem;
+}
+
+/* 离子键动画 */
+.ionic-animation {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    min-width: 300px;
+    justify-content: center;
+}
+
+.step .atom {
+    width: 50px;
+    height: 50px;
+    font-size: 0.9rem;
+}
+
+.step .ion {
+    width: 50px;
+    height: 50px;
+    font-size: 0.9rem;
+}
+
+.electron-transfer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.electron {
+    width: 20px;
+    height: 20px;
+    background: #4fc3f7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.arrow {
+    color: #666;
+    font-weight: bold;
+}
+
+.crystal {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 8px;
+}
+
+.label {
+    position: absolute;
+    bottom: -25px;
+    font-size: 0.8rem;
+    color: #666;
+    background: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* 分子模型 */
+.molecule-model {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.atom.hydrogen {
+    background: linear-gradient(135deg, #ff6b6b, #c44569);
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+}
+
+.atom.oxygen {
+    background: linear-gradient(135deg, #4fc3f7, #0288d1);
+    width: 50px;
+    height: 50px;
+}
+
+.atom.carbon {
+    background: linear-gradient(135deg, #66bb6a, #388e3c);
+    width: 50px;
+    height: 50px;
+}
+
+.atom.nitrogen {
+    background: linear-gradient(135deg, #ab47bc, #7b1fa2);
+    width: 50px;
+    height: 50px;
+}
+
+.bond {
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.single-bond {
+    border-left: 3px solid #4caf50;
+}
+
+.double-bond {
+    border-left: 6px double #ff9800;
+}
+
+.electron-cloud {
+    position: absolute;
+    width: 120px;
+    height: 80px;
+    background: rgba(79, 195, 247, 0.2);
+    border-radius: 50%;
+    border: 2px dashed #4fc3f7;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.cloud-label {
+    position: absolute;
+    bottom: -25px;
+    font-size: 0.8rem;
+    color: #666;
+    background: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.molecule-info {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* 几何构型 */
+.geometry-model {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.central-atom {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #66bb6a, #388e3c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.bond-line {
+    position: absolute;
+    background: #4caf50;
+    height: 3px;
+    transform-origin: center;
+}
+
+.bond-line.horizontal {
+    width: 60px;
+}
+
+.bond-line.angled {
+    width: 60px;
+    transform: rotate(45deg);
+}
+
+.bond-line.pyramid {
+    width: 60px;
+    transform: rotate(45deg);
+}
+
+.bond-line.tetra {
+    width: 60px;
+    transform: rotate(54.7deg);
+}
+
+.lone-pairs {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.lone-pair {
+    font-size: 0.7rem;
+    color: #666;
+    background: #e3f2fd;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+}
+
+.geometry-info {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* 分子间作用力 */
+.force-model {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.molecule {
+    padding: 1rem 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-weight: bold;
+}
+
+.molecule.nonpolar {
+    border-left: 4px solid #ff9800;
+}
+
+.molecule.polar {
+    border-left: 4px solid #4fc3f7;
+}
+
+.molecule.water {
+    border-left: 4px solid #0288d1;
+}
+
+.force-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.force-line, .hydrogen-bond, .dipole-interaction {
+    padding: 0.5rem 1rem;
+    background: #f8f9fa;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+/* 化学键能量计算器 */
+.bond-energy-calculator {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.input-group select,
+.input-group input {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.calculator-form button {
+    padding: 1rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calculator-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.energy-result {
+    background: #e8f5e8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+    margin-top: 1rem;
+}
+
+.energy-result h5 {
+    color: #2e7d32;
+    margin-bottom: 1rem;
+}
+
+.energy-note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+/* 分子极性实验 */
+.polarity-experiment {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.electric-field {
+    position: relative;
+    height: 200px;
+    background: #f8f9fa;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.field-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.field-line {
+    height: 2px;
+    background: repeating-linear-gradient(
+        90deg,
+        #4fc3f7,
+        #4fc3f7 10px,
+        transparent 10px,
+        transparent 20px
+    );
+}
+
+.molecule-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.molecule {
+    padding: 1rem 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+
+.molecule.polar {
+    border-left: 4px solid #4fc3f7;
+    animation: polar-shift 2s ease-in-out infinite;
+}
+
+.molecule.nonpolar {
+    border-left: 4px solid #ff9800;
+}
+
+@keyframes polar-shift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
+
+.experiment-controls {
+    margin: 1rem 0;
+}
+
+.experiment-result {
+    background: #e3f2fd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #0288d1;
+    margin-top: 1rem;
+}
+
+.experiment-analysis h5 {
+    color: #01579b;
+    margin-bottom: 1rem;
+}
+
+/* 化学键测验 */
+.bond-quiz {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.quiz-container {
+    margin: 1rem 0;
+}
+
+.quiz-question {
+    margin-bottom: 1.5rem;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1rem 0;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8f9fa;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+    background: #e3f2fd;
+}
+
+.quiz-option input {
+    margin: 0;
+}
+
+.quiz-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.quiz-controls button {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.quiz-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.correct {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border-left: 4px solid #4caf50;
+}
+
+.incorrect {
+    background: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #f44336;
+}
+
+.quiz-summary {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.quiz-stats {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* 化学键应用案例 */
+.application-visualization {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.application-selector {
+    margin-bottom: 1rem;
+}
+
+.crystal-structure,
+.polymer-chain,
+.metal-lattice-app,
+.dna-structure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    min-height: 100px;
+}
+
+.na-ion, .cl-ion, .cu-ion {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.na-ion {
+    background: linear-gradient(135deg, #ff6b6b, #c44569);
+}
+
+.cl-ion {
+    background: linear-gradient(135deg, #4fc3f7, #0288d1);
+}
+
+.cu-ion {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+}
+
+.carbon-atom {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #66bb6a, #388e3c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.electron-dot-app {
+    width: 15px;
+    height: 15px;
+    background: #4fc3f7;
+    border-radius: 50%;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}

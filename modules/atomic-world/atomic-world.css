@@ -1,0 +1,445 @@
+/* 原子世界模块样式 */
+
+/* 公式卡片 */
+.formula-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+}
+
+.formula-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* 示例样式 */
+.example {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* 交互模型样式 */
+.interactive-model {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.model-controls {
+    margin-bottom: 1rem;
+}
+
+.model-controls label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.model-controls select {
+    padding: 0.5rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background: white;
+}
+
+/* 原子模型可视化 */
+.atom-model {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+    background: #f8f9fa;
+    border-radius: 50%;
+    border: 2px dashed #ddd;
+}
+
+.atom-info {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #e8f5e8;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+}
+
+/* 电子排布样式 */
+.electron-configuration {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.electron-shells {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.shell {
+    padding: 1rem 2rem;
+    background: #ffeb3b;
+    border-radius: 25px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.shell::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    width: 20px;
+    height: 2px;
+    background: #ccc;
+}
+
+.filling-rules {
+    text-align: left;
+    background: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* 原理卡片 */
+.principle-card {
+    background: white;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left: 4px solid #ff9800;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.principle-card h5 {
+    color: #ff9800;
+    margin-bottom: 0.5rem;
+}
+
+/* 周期表部分 */
+.periodic-table-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+}
+
+.periodic-table-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.pt-info {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.pt-preview {
+    background: #e3f2fd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 变化趋势网格 */
+.trends {
+    margin-top: 2rem;
+}
+
+.trend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.trend-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.trend-item h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* 简化周期表样式 */
+.simple-periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 30px);
+    grid-template-rows: repeat(7, 30px);
+    gap: 2px;
+    margin: 1rem auto;
+}
+
+.pt-element {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pt-element:hover {
+    transform: scale(1.2);
+    z-index: 10;
+}
+
+.pt-element.alkali-metal {
+    background: #ff6b6b;
+    color: white;
+}
+
+.pt-element.alkaline-earth {
+    background: #ffa726;
+    color: white;
+}
+
+.pt-element.transition-metal {
+    background: #42a5f5;
+    color: white;
+}
+
+.pt-element.basic-metal {
+    background: #66bb6a;
+    color: white;
+}
+
+.pt-element.semi-metal {
+    background: #ab47bc;
+    color: white;
+}
+
+.pt-element.non-metal {
+    background: #ec407a;
+    color: white;
+}
+
+.pt-element.halogen {
+    background: #7e57c2;
+    color: white;
+}
+
+.pt-element.noble-gas {
+    background: #26c6da;
+    color: white;
+}
+
+.pt-element.lanthanide {
+    background: #78909c;
+    color: white;
+}
+
+.pt-element.actinide {
+    background: #8d6e63;
+    color: white;
+}
+
+/* 原子可视化样式 */
+.atom-visualization {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nucleus {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #ff6b6b, #c44569);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+    z-index: 2;
+}
+
+.proton,
+.neutron {
+    font-size: 0.8rem;
+    margin: 0 2px;
+}
+
+.nucleus-label {
+    position: absolute;
+    bottom: -30px;
+    font-size: 0.7rem;
+    color: #666;
+    white-space: nowrap;
+}
+
+.electron-shell {
+    position: absolute;
+    border: 2px solid #4fc3f7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rotate 20s linear infinite;
+}
+
+.electron-shell:nth-child(even) {
+    animation-direction: reverse;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.shell-label {
+    position: absolute;
+    top: -25px;
+    font-size: 0.7rem;
+    color: #666;
+    background: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.electron {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #4fc3f7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.6rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+}
+
+.element-name {
+    position: absolute;
+    bottom: -40px;
+    font-weight: bold;
+    color: #333;
+}
+
+.element-details {
+    font-size: 0.9rem;
+}
+
+.element-details p {
+    margin: 0.3rem 0;
+}
+
+/* 元素性质对比表格 */
+.element-comparison {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+}
+
+.comparison-table-container {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 0.8rem;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+}
+
+.comparison-table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+}
+
+.comparison-table tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.comparison-table tr:hover {
+    background: #e3f2fd;
+}
+
+.comparison-notes {
+    background: #e8f5e8;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+    margin-top: 1rem;
+}
+
+.comparison-notes p {
+    margin: 0;
+    color: #2e7d32;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .periodic-table-intro {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-table {
+        font-size: 0.8rem;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+        padding: 0.5rem;
+    }
+    
+    .atom-model {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .electron-shells {
+        gap: 1rem;
+    }
+    
+    .shell {
+        padding: 0.8rem 1.5rem;
+    }
+}

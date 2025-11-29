@@ -1,0 +1,435 @@
+<div class="chapter-header">
+    <h2>第二章：化学键与分子间作用力</h2>
+    <p class="chapter-description">探索原子如何结合形成分子</p>
+</div>
+
+<!-- 化学键类型介绍 -->
+<div class="content-grid">
+    <div class="text-content">
+        <h3>🔗 化学键类型</h3>
+        <p>化学键是原子间相互作用的力，主要有三种类型：</p>
+        
+        <div class="bond-type-card">
+            <h4>离子键</h4>
+            <p>金属原子与非金属原子间通过电子转移形成</p>
+            <ul>
+                <li>电子从金属原子转移到非金属原子</li>
+                <li>形成带正负电荷的离子</li>
+                <li>通过静电作用结合</li>
+            </ul>
+            <div class="example">
+                <strong>示例：</strong>NaCl（氯化钠）
+            </div>
+        </div>
+
+        <div class="bond-type-card">
+            <h4>共价键</h4>
+            <p>非金属原子间通过电子共用形成</p>
+            <ul>
+                <li>原子间共用电子对</li>
+                <li>形成稳定的电子构型</li>
+                <li>可以是单键、双键或三键</li>
+            </ul>
+            <div class="example">
+                <strong>示例：</strong>H₂O（水分子）
+            </div>
+        </div>
+
+        <div class="bond-type-card">
+            <h4>金属键</h4>
+            <p>金属原子间通过电子海模型结合</p>
+            <ul>
+                <li>金属原子释放价电子形成电子海</li>
+                <li>正离子沉浸在电子海中</li>
+                <li>赋予金属导电性、延展性</li>
+            </ul>
+            <div class="example">
+                <strong>示例：</strong>Cu（铜）
+            </div>
+        </div>
+    </div>
+
+    <div class="visual-content">
+        <div class="bond-interactive">
+            <h4>化学键形成模拟</h4>
+            <div class="bond-controls">
+                <label for="bond-type-select">选择键类型：</label>
+                <select id="bond-type-select" onchange="ChemicalBonds.showBondAnimation(this.value)">
+                    <option value="ionic">离子键（NaCl）</option>
+                    <option value="covalent">共价键（H₂O）</option>
+                    <option value="metallic">金属键（Cu）</option>
+                </select>
+            </div>
+            <div id="bond-animation" class="bond-animation">
+                <!-- 化学键动画将通过JavaScript动态生成 -->
+            </div>
+            <div id="bond-info" class="bond-info">
+                <!-- 键信息将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 离子键形成动画 -->
+<div class="bond-section">
+    <h3>⚡ 离子键形成过程</h3>
+    <div class="content-grid">
+        <div class="visual-content">
+            <div class="ionic-bond-animation">
+                <h4>钠与氯形成离子键</h4>
+                <div class="animation-container" id="ionic-animation">
+                    <!-- 离子键动画 -->
+                </div>
+                <div class="animation-controls">
+                    <button onclick="ChemicalBonds.startIonicAnimation()">开始动画</button>
+                    <button onclick="ChemicalBonds.resetIonicAnimation()">重置</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-content">
+            <h4>离子键形成原理</h4>
+            <p>钠原子（Na）失去一个电子形成Na⁺离子，氯原子（Cl）获得一个电子形成Cl⁻离子：</p>
+            
+            <div class="chemical-equation">
+                <div class="equation">Na + Cl → Na⁺ + Cl⁻ → NaCl</div>
+            </div>
+
+            <div class="energy-info">
+                <h5>能量变化</h5>
+                <ul>
+                    <li>电离能：Na → Na⁺ + e⁻ (需要能量)</li>
+                    <li>电子亲和能：Cl + e⁻ → Cl⁻ (释放能量)</li>
+                    <li>晶格能：Na⁺ + Cl⁻ → NaCl (释放大量能量)</li>
+                </ul>
+            </div>
+
+            <div class="properties">
+                <h5>离子化合物性质</h5>
+                <ul>
+                    <li>高熔点、高沸点</li>
+                    <li>固态不导电，熔融态或溶液导电</li>
+                    <li>硬而脆</li>
+                    <li>易溶于极性溶剂</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 共价键电子云可视化 -->
+<div class="bond-section">
+    <h3>☁️ 共价键与电子云</h3>
+    <div class="content-grid">
+        <div class="text-content">
+            <h4>共价键形成原理</h4>
+            <p>原子间通过共用电子对形成稳定的电子构型：</p>
+            
+            <div class="covalent-types">
+                <div class="covalent-type">
+                    <h5>单键</h5>
+                    <p>共用一对电子，如H-H</p>
+                </div>
+                <div class="covalent-type">
+                    <h5>双键</h5>
+                    <p>共用两对电子，如O=O</p>
+                </div>
+                <div class="covalent-type">
+                    <h5>三键</h5>
+                    <p>共用三对电子，如N≡N</p>
+                </div>
+            </div>
+
+            <div class="electron-cloud-info">
+                <h5>电子云重叠</h5>
+                <p>共价键的本质是原子轨道重叠形成分子轨道，电子云密度在原子核间区域最大。</p>
+            </div>
+
+            <div class="polarity-info">
+                <h5>键的极性</h5>
+                <p>根据电负性差异判断：</p>
+                <ul>
+                    <li>非极性共价键：相同原子间（H-H）</li>
+                    <li>极性共价键：不同原子间（H-Cl）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="visual-content">
+            <div class="covalent-bond-visualization">
+                <h4>共价键电子云</h4>
+                <div class="molecule-selector">
+                    <label for="molecule-select">选择分子：</label>
+                    <select id="molecule-select" onchange="ChemicalBonds.showCovalentBond(this.value)">
+                        <option value="h2">氢气（H₂）</option>
+                        <option value="h2o">水（H₂O）</option>
+                        <option value="co2">二氧化碳（CO₂）</option>
+                        <option value="nh3">氨（NH₃）</option>
+                    </select>
+                </div>
+                <div id="covalent-visualization" class="covalent-visualization">
+                    <!-- 共价键可视化 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 分子几何构型 -->
+<div class="bond-section">
+    <h3>🔺 分子几何构型</h3>
+    <div class="content-grid">
+        <div class="visual-content">
+            <div class="molecular-geometry">
+                <h4>VSEPR理论模型</h4>
+                <div class="geometry-controls">
+                    <label for="geometry-select">选择分子构型：</label>
+                    <select id="geometry-select" onchange="ChemicalBonds.showMolecularGeometry(this.value)">
+                        <option value="linear">直线形（CO₂）</option>
+                        <option value="bent">V形（H₂O）</option>
+                        <option value="trigonal">三角锥形（NH₃）</option>
+                        <option value="tetrahedral">四面体形（CH₄）</option>
+                    </select>
+                </div>
+                <div id="geometry-visualization" class="geometry-visualization">
+                    <!-- 分子几何构型可视化 -->
+                </div>
+            </div>
+        </div>
+        <div class="text-content">
+            <h4>VSEPR理论</h4>
+            <p>价层电子对互斥理论：分子采取电子对相互排斥最小的空间构型。</p>
+            
+            <div class="vsepr-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>电子对数</th>
+                            <th>孤电子对数</th>
+                            <th>分子构型</th>
+                            <th>示例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>直线形</td>
+                            <td>CO₂</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>平面三角形</td>
+                            <td>BF₃</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>四面体形</td>
+                            <td>CH₄</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>1</td>
+                            <td>三角锥形</td>
+                            <td>NH₃</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>V形</td>
+                            <td>H₂O</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="polarity-determination">
+                <h5>分子极性判断</h5>
+                <p>分子极性取决于：</p>
+                <ul>
+                    <li>键的极性</li>
+                    <li>分子几何构型</li>
+                    <li>对称性</li>
+                </ul>
+                <p><strong>示例：</strong>CO₂（非极性）vs H₂O（极性）</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 分子间作用力 -->
+<div class="bond-section">
+    <h3>💧 分子间作用力</h3>
+    <div class="content-grid">
+        <div class="text-content">
+            <h4>分子间作用力类型</h4>
+            
+            <div class="intermolecular-force">
+                <h5>范德华力</h5>
+                <p>所有分子间都存在，包括：</p>
+                <ul>
+                    <li>取向力：极性分子间</li>
+                    <li>诱导力：极性-非极性分子间</li>
+                    <li>色散力：所有分子间（主要作用）</li>
+                </ul>
+            </div>
+
+            <div class="intermolecular-force">
+                <h5>氢键</h5>
+                <p>特殊的分子间作用力：</p>
+                <ul>
+                    <li>存在于H与N、O、F之间</li>
+                    <li>比范德华力强</li>
+                    <li>影响物质物理性质</li>
+                </ul>
+                <div class="example">
+                    <strong>示例：</strong>水分子间的氢键
+                </div>
+            </div>
+
+            <div class="properties-effect">
+                <h5>对物质性质的影响</h5>
+                <ul>
+                    <li>沸点、熔点</li>
+                    <li>溶解度</li>
+                    <li>表面张力</li>
+                    <li>粘度</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="visual-content">
+            <div class="intermolecular-forces-visualization">
+                <h4>分子间作用力模拟</h4>
+                <div class="force-controls">
+                    <label for="force-type-select">选择作用力类型：</label>
+                    <select id="force-type-select" onchange="ChemicalBonds.showIntermolecularForces(this.value)">
+                        <option value="vdw">范德华力</option>
+                        <option value="hydrogen">氢键</option>
+                        <option value="dipole">偶极-偶极作用</option>
+                    </select>
+                </div>
+                <div id="forces-visualization" class="forces-visualization">
+                    <!-- 分子间作用力可视化 -->
+                </div>
+                <div class="force-info">
+                    <p id="force-description">选择作用力类型查看详细说明</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 化学键能量计算器 -->
+<div class="bond-section">
+    <h3>⚖️ 化学键能量计算器</h3>
+    <div class="content-grid">
+        <div class="text-content">
+            <h4>键能计算原理</h4>
+            <p>键能是衡量化学键强度的物理量，表示破坏1mol化学键所需的能量：</p>
+            
+            <div class="energy-formula">
+                <h5>键能计算公式</h5>
+                <div class="formula">$$E_{bond} = \frac{\Delta H}{n}$$</div>
+                <p>其中：</p>
+                <ul>
+                    <li>$E_{bond}$：键能 (kJ/mol)</li>
+                    <li>$\Delta H$：反应焓变 (kJ)</li>
+                    <li>$n$：化学键数量</li>
+                </ul>
+            </div>
+
+            <div class="bond-strength-comparison">
+                <h5>常见化学键键能对比</h5>
+                <ul>
+                    <li>H-H：436 kJ/mol</li>
+                    <li>C-C：347 kJ/mol</li>
+                    <li>C=O：799 kJ/mol</li>
+                    <li>N≡N：945 kJ/mol</li>
+                    <li>Na-Cl：787 kJ/mol</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="visual-content">
+            <div class="bond-energy-calculator">
+                <h4>键能计算器</h4>
+                <div class="calculator-form">
+                    <div class="input-group">
+                        <label for="bond-type">选择化学键类型：</label>
+                        <select id="bond-type">
+                            <option value="H-H">H-H (氢气)</option>
+                            <option value="O=O">O=O (氧气)</option>
+                            <option value="N≡N">N≡N (氮气)</option>
+                            <option value="C-C">C-C (碳碳单键)</option>
+                            <option value="C=O">C=O (羰基)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="bond-count">化学键数量：</label>
+                        <input type="number" id="bond-count" value="1" min="1" max="10">
+                    </div>
+                    <button onclick="ChemicalBonds.calculateBondEnergy()">计算键能</button>
+                    <div id="energy-result" class="result-display">
+                        <!-- 计算结果将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 分子极性实验 -->
+<div class="bond-section">
+    <h3>🧲 分子极性实验</h3>
+    <div class="content-grid">
+        <div class="visual-content">
+            <div class="polarity-experiment">
+                <h4>分子极性测试</h4>
+                <div class="experiment-setup">
+                    <div class="electric-field">
+                        <div class="field-lines">
+                            <div class="field-line"></div>
+                            <div class="field-line"></div>
+                            <div class="field-line"></div>
+                        </div>
+                        <div class="molecule-container" id="molecule-container">
+                            <!-- 分子将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+                <div class="experiment-controls">
+                    <label for="molecule-experiment">选择测试分子：</label>
+                    <select id="molecule-experiment" onchange="ChemicalBonds.runPolarityExperiment(this.value)">
+                        <option value="h2o">水 (H₂O) - 极性</option>
+                        <option value="co2">二氧化碳 (CO₂) - 非极性</option>
+                        <option value="nh3">氨 (NH₃) - 极性</option>
+                        <option value="ch4">甲烷 (CH₄) - 非极性</option>
+                        <option value="hcl">氯化氢 (HCl) - 极性</option>
+                    </select>
+                </div>
+                <div id="experiment-result" class="experiment-result">
+                    <!-- 实验结果将在这里显示 -->
+                </div>
+            </div>
+        </div>
+        <div class="text-content">
+            <h4>分子极性原理</h4>
+            <p>分子极性取决于分子中正负电荷中心的相对位置：</p>
+            
+            <div class="polarity-factors">
+                <h5>影响极性的因素</h5>
+                <ul>
+                    <li><strong>键的极性</strong>：电负性差异</li>
+                    <li><strong>分子几何构型</strong>：对称性</li>
+                    <li><strong>孤电子对</strong>：影响电子云分布</li>
+                </ul>
+            </div>
+
+            <div class="polarity-applications">
+                <h5>极性的应用</h5>
+                <ul>
+                    <li><strong>溶解度</strong>：相似相溶原理</li>
+                    <li><strong>沸点</strong>：极性分子间作用力更强</li>
+                    <li><strong>化学反应</strong>：影响
