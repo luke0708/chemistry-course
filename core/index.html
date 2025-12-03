@@ -6,7 +6,7 @@
     <title>化学课程 - 交互式学习系统</title>
     
     <!-- 核心样式 -->
-    <link rel="stylesheet" href="core.css">
+    <link rel="stylesheet" href="/core/core.css?v=1.0.1">
     
     <!-- MathJax 数学公式支持 -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -136,43 +136,22 @@
         <!-- 内容将通过模块加载器动态加载 -->
     </section>
 
-    <!-- 反应原理章节 - 开发中 -->
+    <!-- 反应原理章节 - 动态加载 -->
     <section id="reactions" class="section">
-        <div class="coming-soon">
-            <div class="coming-soon-content">
-                <h3>🚧 章节开发中</h3>
-                <p>反应原理章节正在积极开发中，将包含：</p>
-                <ul>
-                    <li>反应类型分类动画</li>
-                    <li>能量变化可视化</li>
-                    <li>反应速率影响因素实验</li>
-                    <li>化学平衡动态演示</li>
-                </ul>
-                <p>敬请期待！</p>
-            </div>
-        </div>
+        <!-- 内容将通过模块加载器动态加载 -->
     </section>
 
-    <!-- 元素王国章节 - 开发中 -->
+    <!-- 元素王国章节 - 动态加载 -->
     <section id="elements" class="section">
-        <div class="coming-soon">
-            <div class="coming-soon-content">
-                <h3>🚧 章节开发中</h3>
-                <p>元素王国章节正在积极开发中，将包含：</p>
-                <ul>
-                    <li>金属元素家族介绍</li>
-                    <li>非金属元素性质展示</li>
-                    <li>有机化学基础</li>
-                    <li>元素应用案例库</li>
-                </ul>
-                <p>敬请期待！</p>
-            </div>
+        <div class="module-loading">
+            <div class="spinner"></div>
+            <p>元素王国章节正在开发中，敬请期待...</p>
         </div>
     </section>
 
     <!-- 核心脚本加载 -->
-    <script src="shared/utils.js"></script>
-    <script src="shared/constants.js"></script>
-    <script src="core.js"></script>
+    <script src="/core/shared/utils.js?v=1.0.1"></script>
+    <script src="/core/shared/constants.js?v=1.0.1"></script>
+    <script src="/core/core.js?v=1.0.1"></script>
 </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Reactions Module Load</title>
+    <script src="/core/shared/utils.js"></script>
+</head>
+<body>
+    <h1>Testing Reactions Module Load</h1>
+    <div id="reactions" style="border: 1px solid #ccc; padding: 20px; min-height: 300px;">
+        Loading...
+    </div>
+    
+    <script>
+        async function testLoadReactions() {
+            console.log('开始测试反应原理模块加载...');
+            
+            // 测试1: 检查Utils是否可用
+            console.log('Utils available:', typeof Utils !== 'undefined');
+            
+            // 测试2: 直接加载reactions.html
+            const htmlPath = '/core/modules/reactions/reactions.html';
+            console.log('Fetching HTML from:', htmlPath);
+            
+            try {
+                const response = await fetch(htmlPath);
+                console.log('Response status:', response.status, 'OK:', response.ok);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+                
+                const html = await response.text();
+                console.log('HTML content length:', html.length);
+                console.log('First 500 chars:', html.substring(0, 500));
+                
+                // 插入到页面
+                document.getElementById('reactions').innerHTML = html;
+                console.log('HTML inserted successfully');
+                
+                // 测试3: 加载JavaScript
+                const jsPath = '/core/modules/reactions/reactions.js';
+                console.log('Loading JS from:', jsPath);
+                
+                const script = document.createElement('script');
+                script.src = jsPath;
+                script.onload = () => {
+                    console.log('JavaScript loaded successfully');
+                    console.log('window.Reactions exists:', window.Reactions ? 'YES' : 'NO');
+                    if (window.Reactions) {
+                        console.log('Reactions.init type:', typeof window.Reactions.init);
+                        try {
+                            window.Reactions.init();
+                            console.log('Reactions.init() called successfully');
+                        } catch (error) {
+                            console.error('Error calling Reactions.init():', error);
+                        }
+                    }
+                };
+                script.onerror = (error) => {
+                    console.error('Failed to load JavaScript:', error);
+                };
+                
+                document.head.appendChild(script);
+                
+            } catch (error) {
+                console.error('Error loading module:', error);
+                document.getElementById('reactions').innerHTML = 
+                    `<div style="color: red; padding: 20px;">
+                        <h3>Error</h3>
+                        <p>${error.message}</p>
+                        <p>Check browser console for details.</p>
+                    </div>`;
+            }
+        }
+        
+        // 页面加载完成后开始测试
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', testLoadReactions);
+        } else {
+            testLoadReactions();
+        }
+    </script>
+</body>
+</html>

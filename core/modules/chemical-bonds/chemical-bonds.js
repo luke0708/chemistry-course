@@ -485,13 +485,107 @@ const ChemicalBonds = {
     },
 
     /**
+     * 显示化学键应用案例
+     * @param {string} application - 应用案例类型
+     */
+    showApplication(application) {
+        const visual = document.getElementById('application-visual');
+        const info = document.getElementById('application-info');
+        
+        visual.innerHTML = this.generateApplicationVisualization(application);
+        info.innerHTML = this.generateApplicationInfo(application);
+    },
+
+    /**
+     * 生成应用案例可视化
+     * @param {string} application - 应用案例类型
+     * @returns {string} HTML字符串
+     */
+    generateApplicationVisualization(application) {
+        switch (application) {
+            case 'salt':
+                return `
+                    <div class="crystal-structure">
+                        <div class="na-ion blink blink-delay-1">Na⁺</div>
+                        <div class="cl-ion blink blink-delay-2">Cl⁻</div>
+                        <div class="na-ion blink blink-delay-3">Na⁺</div>
+                        <div class="cl-ion blink blink-delay-4">Cl⁻</div>
+                        <div class="na-ion blink blink-delay-5">Na⁺</div>
+                        <div class="cl-ion blink">Cl⁻</div>
+                    </div>
+                `;
+            case 'plastic':
+                return `
+                    <div class="polymer-chain">
+                        <div class="carbon-atom wave wave-delay-1">C</div>
+                        <div class="carbon-atom wave wave-delay-2">C</div>
+                        <div class="carbon-atom wave wave-delay-3">C</div>
+                        <div class="carbon-atom wave wave-delay-4">C</div>
+                        <div class="carbon-atom wave wave-delay-5">C</div>
+                        <div class="carbon-atom wave">C</div>
+                    </div>
+                `;
+            case 'copper':
+                return `
+                    <div class="metal-lattice-app">
+                        <div class="cu-ion pulse-scale">Cu²⁺</div>
+                        <div class="electron-dot-app"></div>
+                        <div class="cu-ion pulse-scale" style="animation-delay: 0.3s">Cu²⁺</div>
+                        <div class="electron-dot-app"></div>
+                        <div class="cu-ion pulse-scale" style="animation-delay: 0.6s">Cu²⁺</div>
+                        <div class="electron-dot-app"></div>
+                    </div>
+                `;
+            case 'dna':
+                return `
+                    <div class="dna-structure">
+                        <div class="na-ion blink" style="background: linear-gradient(135deg, #4caf50, #2e7d32);">A</div>
+                        <div class="hydrogen-bond pulse-scale">氢键</div>
+                        <div class="cl-ion blink blink-delay-1" style="background: linear-gradient(135deg, #ff9800, #f57c00);">T</div>
+                        <div class="na-ion blink blink-delay-2" style="background: linear-gradient(135deg, #2196f3, #0d47a1);">G</div>
+                        <div class="hydrogen-bond pulse-scale" style="animation-delay: 0.5s">氢键</div>
+                        <div class="cl-ion blink blink-delay-3" style="background: linear-gradient(135deg, #9c27b0, #6a1b9a);">C</div>
+                    </div>
+                `;
+            default:
+                return '<p>选择应用案例查看可视化效果</p>';
+        }
+    },
+
+    /**
+     * 生成应用案例信息
+     * @param {string} application - 应用案例类型
+     * @returns {string} HTML字符串
+     */
+    generateApplicationInfo(application) {
+        // 使用共享常量
+        const cases = Constants.APPLICATION_CASES;
+        const caseData = cases[application];
+        
+        if (caseData) {
+            return `
+                <h4>${caseData.name}</h4>
+                <p>${caseData.description}</p>
+                <div class="bond-type-tag">
+                    <strong>主要化学键类型：</strong>
+                    ${application === 'salt' ? '离子键' : 
+                      application === 'plastic' ? '共价键' : 
+                      application === 'copper' ? '金属键' : '氢键'}
+                </div>
+            `;
+        }
+        
+        return '<p>选择应用案例查看详细信息</p>';
+    },
+
+    /**
      * 清理模块资源
      */
     cleanup() {
         // 清理事件监听器等资源
         const controls = [
             'bond-type-select', 'molecule-select', 'geometry-select',
-            'force-type-select', 'molecule-experiment'
+            'force-type-select', 'molecule-experiment', 'application-select'
         ];
         
         controls.forEach(id => {
@@ -556,4 +650,8 @@ window.startIonicAnimation = function() {
 
 window.resetIonicAnimation = function() {
     ChemicalBonds.resetIonicAnimation();
+};
+
+window.showApplication = function(application) {
+    ChemicalBonds.showApplication(application);
 };

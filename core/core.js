@@ -1,11 +1,43 @@
 // 核心框架功能 - 模块加载和章节切换
 
+// 化学键应用案例加载函数（用于首页）
+window.loadAndShowApplication = async function(application) {
+    // 如果showApplication函数已经存在，直接调用
+    if (typeof window.showApplication === 'function') {
+        window.showApplication(application);
+        return;
+    }
+
+    // 动态加载CSS
+    const cssPath = 'core/modules/chemical-bonds/chemical-bonds.css';
+    const jsPath = 'core/modules/chemical-bonds/chemical-bonds.js';
+
+    // 加载CSS
+    const cssLink = document.createElement('link');
+    cssLink.rel = 'stylesheet';
+    cssLink.href = cssPath;
+    document.head.appendChild(cssLink);
+
+    // 加载JS
+    const script = document.createElement('script');
+    script.src = jsPath;
+    script.onload = function() {
+        // JS加载完成后，调用showApplication
+        if (typeof window.showApplication === 'function') {
+            window.showApplication(application);
+        } else {
+            console.error('showApplication function not found after loading chemical-bonds.js');
+        }
+    };
+    document.head.appendChild(script);
+};
+
 // 模块状态管理
 const ModuleManager = {
     loadedModules: new Set(),
     loadingModules: new Map(),
     
-    // 模块配置
+    // 模块配置 - 使用相对路径（相对于index.html）
     modules: {
         'home': {
             css: '',
@@ -13,24 +45,24 @@ const ModuleManager = {
             html: ''
         },
         'atomic-world': {
-            css: 'modules/atomic-world/atomic-world.css',
-            js: 'modules/atomic-world/atomic-world.js',
-            html: 'modules/atomic-world/atomic-world.html'
+            css: 'core/modules/atomic-world/atomic-world.css',
+            js: 'core/modules/atomic-world/atomic-world.js',
+            html: ''  // 内容已内嵌在index.html中
         },
         'chemical-bonds': {
-            css: 'modules/chemical-bonds/chemical-bonds.css',
-            js: 'modules/chemical-bonds/chemical-bonds.js',
-            html: 'modules/chemical-bonds/chemical-bonds.html'
+            css: 'core/modules/chemical-bonds/chemical-bonds.css',
+            js: 'core/modules/chemical-bonds/chemical-bonds.js',
+            html: ''  // 内容已内嵌在index.html中
         },
         'reactions': {
-            css: '',
-            js: '',
-            html: ''
+            css: 'core/modules/reactions/reactions.css',
+            js: 'core/modules/reactions/reactions.js',
+            html: 'core/modules/reactions/reactions.html'
         },
         'elements': {
-            css: '',
-            js: '',
-            html: ''
+            css: 'core/modules/elements/elements.css',
+            js: 'core/modules/elements/elements.js',
+            html: 'core/modules/elements/elements.html'
         }
     },
 
@@ -76,24 +108,38 @@ const ModuleManager = {
      * @returns {Promise<void>}
      */
     async _loadModuleResources(moduleId, module) {
-        const promises = [];
-
-        // 加载HTML内容
-        if (module.html) {
-            promises.push(this._loadHTML(moduleId, module.html));
-        }
-
-        // 加载CSS
+        console.log(`开始加载模块资源: ${moduleId}`);
+        
+        // 先加载CSS（并行，不影响）
+        const cssPromises = [];
         if (module.css) {
-            promises.push(Utils.loadCSS(module.css));
+            console.log(`加载CSS: ${module.css}`);
+            cssPromises.push(Utils.loadCSS(module.css));
         }
 
-        // 加载JavaScript
+        // 先确保JavaScript加载完成
         if (module.js) {
-            promises.push(Utils.loadModule(module.js));
+            console.log(`加载JS: ${module.js}`);
+            await Utils.loadModule(module.js);
+            console.log(`JavaScript模块加载完成: ${module.js}`);
         }
 
-        await Promise.all(promises);
+        // 等待CSS加载完成（如果有）
+        if (cssPromises.length > 0) {
+            await Promise.all(cssPromises);
+        }
+
+        // 最后加载HTML，如果HTML为空则直接初始化模块
+        if (module.html) {
+            console.log(`加载HTML: ${module.html}`);
+            await this._loadHTML(moduleId, module.html);
+        } else {
+            // 如果没有HTML文件，直接初始化模块
+            console.log(`模块${moduleId}没有HTML文件，直接初始化`);
+            this._initializeModule(moduleId);
+        }
+
+        console.log(`模块资源加载完成: ${moduleId}`);
     },
 
     /**
@@ -104,22 +150,30 @@ const ModuleManager = {
      */
     async _loadHTML(moduleId, htmlPath) {
         try {
+            console.log(`开始加载HTML: ${htmlPath}`);
             const response = await fetch(htmlPath);
+            console.log(`HTML响应状态: ${response.status}`);
             if (!response.ok) {
                 throw new Error(`Failed to load HTML: ${response.status}`);
             }
             const html = await response.text();
+            console.log(`HTML内容长度: ${html.length}`);
             
             // 将HTML内容插入到对应的section中
             const section = document.getElementById(moduleId);
             if (section) {
+                console.log(`找到section: ${moduleId}`);
                 section.innerHTML = html;
+                console.log(`HTML插入完成`);
                 
                 // 在HTML加载完成后立即初始化模块
                 // 使用setTimeout确保DOM更新完成
                 setTimeout(() => {
+                    console.log(`调用_initializeModule for ${moduleId}`);
                     this._initializeModule(moduleId);
                 }, 0);
+            } else {
+                console.error(`未找到section: ${moduleId}`);
             }
         } catch (error) {
             console.error(`Failed to load HTML for module ${moduleId}:`, error);
@@ -136,10 +190,18 @@ const ModuleManager = {
         
         // 使用更可靠的初始化方式，确保依赖已加载
         const initializeWithRetry = (moduleName, initFunction, retryCount = 0) => {
+            console.log(`尝试初始化${moduleName} (重试次数: ${retryCount})`);
+            console.log(`window[${moduleName}] 存在:`, !!window[moduleName]);
+            if (window[moduleName]) {
+                console.log(`window[${moduleName}] 类型:`, typeof window[moduleName]);
+                console.log(`window[${moduleName}].init 存在:`, typeof window[moduleName].init);
+            }
+            
             if (window[moduleName] && typeof window[moduleName].init === 'function') {
                 console.log(`开始初始化${moduleName}模块`);
                 try {
                     window[moduleName].init();
+                    console.log(`${moduleName}模块初始化成功`);
                 } catch (error) {
                     console.error(`${moduleName}模块初始化失败:`, error);
                     // 如果初始化失败，重试一次
@@ -154,6 +216,7 @@ const ModuleManager = {
                 setTimeout(() => initializeWithRetry(moduleName, initFunction, retryCount + 1), 50);
             } else {
                 console.error(`${moduleName}模块未找到或init方法不存在`);
+                console.log(`可用的全局对象:`, Object.keys(window).filter(k => k === moduleName || k.toLowerCase().includes(moduleName.toLowerCase())));
             }
         };
 
@@ -164,6 +227,14 @@ const ModuleManager = {
                 break;
             case 'chemical-bonds':
                 initializeWithRetry('ChemicalBonds');
+                break;
+            case 'reactions':
+                console.log('开始初始化反应原理模块...');
+                initializeWithRetry('Reactions');
+                break;
+            case 'elements':
+                console.log('开始初始化元素王国模块...');
+                initializeWithRetry('ElementsKingdom');
                 break;
             // 其他模块的初始化...
         }
@@ -205,8 +276,8 @@ const SectionManager = {
         // 隐藏当前章节
         this.hideCurrentSection();
 
-        // 特殊处理：首页和未开发章节不需要模块加载
-        if (sectionId === 'home' || sectionId === 'reactions' || sectionId === 'elements') {
+        // 特殊处理：首页不需要模块加载
+        if (sectionId === 'home') {
             this.displaySection(sectionId);
             this.updateNavActiveState(sectionId);
             this.currentSection = sectionId;
@@ -220,6 +291,26 @@ const SectionManager = {
             this.updateNavActiveState(sectionId);
             this.currentSection = sectionId;
             window.scrollTo(0, 0);
+            return;
+        }
+
+        // 检查章节内容是否已经内嵌（非空）
+        const section = document.getElementById(sectionId);
+        if (section && section.innerHTML.trim() !== '') {
+            // 内容已内嵌，直接显示
+            this.displaySection(sectionId);
+            this.updateNavActiveState(sectionId);
+            this.currentSection = sectionId;
+            window.scrollTo(0, 0);
+            
+            // 如果模块未加载，则加载模块（仅JS和CSS）
+            if (!ModuleManager.isModuleLoaded(sectionId)) {
+                try {
+                    await ModuleManager.loadModule(sectionId);
+                } catch (error) {
+                    console.error(`Failed to initialize module ${sectionId}:`, error);
+                }
+            }
             return;
         }
 
@@ -378,11 +469,19 @@ const NavigationManager = {
     }
 };
 
+// 全局错误处理
+window.addEventListener('error', function(event) {
+    console.error('全局错误捕获:', event.error);
+    console.error('错误发生在:', event.filename, '行:', event.lineno, '列:', event.colno);
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+    console.error('未处理的Promise拒绝:', event.reason);
+});
+
 // 初始化应用
 document.addEventListener('DOMContentLoaded', function () {
-    // 加载共享工具
-    Utils.loadModule('shared/utils.js');
-    Utils.loadModule('shared/constants.js');
+    // 共享工具已经在core/index.html中加载，直接使用即可
     
     // 初始化导航
     NavigationManager.init();

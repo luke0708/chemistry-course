@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Module Loading</title>
+    <script>
+        async function testModule() {
+            const modulePath = '/core/modules/reactions/reactions.html';
+            console.log('Testing module loading...');
+            
+            try {
+                const response = await fetch(modulePath);
+                console.log('Response status:', response.status, response.ok);
+                const html = await response.text();
+                console.log('HTML length:', html.length);
+                console.log('First 200 chars:', html.substring(0, 200));
+                
+                document.getElementById('result').innerHTML = 
+                    `<h3>Module Load Test</h3>
+                     <p>Status: ${response.status} ${response.ok ? 'OK' : 'ERROR'}</p>
+                     <p>Length: ${html.length} characters</p>
+                     <pre>${html.substring(0, 300)}</pre>`;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = 
+                    `<h3>Error</h3><p>${error.message}</p>`;
+            }
+        }
+        
+        async function testJSModule() {
+            const jsPath = '/core/modules/reactions/reactions.js';
+            console.log('Testing JS module loading...');
+            
+            try {
+                const response = await fetch(jsPath);
+                console.log('JS Response status:', response.status);
+                const js = await response.text();
+                console.log('JS length:', js.length);
+                
+                // 创建script元素来加载JS
+                const script = document.createElement('script');
+                script.textContent = js;
+                document.head.appendChild(script);
+                
+                // 检查全局对象
+                setTimeout(() => {
+                    console.log('window.Reactions exists:', !!window.Reactions);
+                    if (window.Reactions) {
+                        console.log('Reactions.init type:', typeof window.Reactions.init);
+                        document.getElementById('js-result').innerHTML = 
+                            `<h3>JS Module Loaded</h3>
+                             <p>window.Reactions exists: true</p>
+                             <p>Reactions.init type: ${typeof window.Reactions.init}</p>`;
+                    } else {
+                        document.getElementById('js-result').innerHTML = 
+                            `<h3>JS Module Not Found</h3>
+                             <p>window.Reactions exists: false</p>`;
+                    }
+                }, 100);
+            } catch (error) {
+                console.error('JS Error:', error);
+                document.getElementById('js-result').innerHTML = 
+                    `<h3>JS Error</h3><p>${error.message}</p>`;
+            }
+        }
+        
+        window.onload = function() {
+            testModule();
+            testJSModule();
+        };
+    </script>
+</head>
+<body>
+    <h1>Debug Module Loading</h1>
+    <div id="result">Testing HTML module...</div>
+    <div id="js-result">Testing JS module...</div>
+</body>
+</html>

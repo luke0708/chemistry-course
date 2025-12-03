@@ -26,10 +26,11 @@
 
 /* 交互模型样式 */
 .interactive-model {
-    background: white;
+    background: #f8f9fa;
     padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
 }
 
 .model-controls {
@@ -37,8 +38,9 @@
 }
 
 .model-controls label {
-    font-weight: bold;
+    font-weight: 600;
     margin-right: 0.5rem;
+    color: #343a40;
 }
 
 .model-controls select {
@@ -69,10 +71,12 @@
 
 /* 电子排布样式 */
 .electron-configuration {
-    background: white;
+    background: #f8f9fa;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .electron-shells {
@@ -85,12 +89,17 @@
 
 .shell {
     padding: 1rem 2rem;
-    background: #ffeb3b;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 25px;
-    font-weight: bold;
-    color: #333;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
     position: relative;
+    transition: all 0.3s ease;
+}
+.shell:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
 }
 
 .shell::before {
@@ -105,10 +114,23 @@
 
 .filling-rules {
     text-align: left;
-    background: #f5f5f5;
+    background: white;
     padding: 1.5rem;
     border-radius: 8px;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    border: 1px solid #dee2e6;
+}
+.filling-rules h5 {
+    color: #343a40;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+.filling-rules ul {
+    padding-left: 1.2rem;
+}
+.filling-rules li {
+    margin-bottom: 0.5rem;
+    color: #495057;
 }
 
 /* 原理卡片 */
@@ -116,22 +138,40 @@
     background: white;
     padding: 1.5rem;
     margin: 1rem 0;
-    border-radius: 8px;
-    border-left: 4px solid #ff9800;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border-left: 5px solid #667eea;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+.principle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .principle-card h5 {
-    color: #ff9800;
-    margin-bottom: 0.5rem;
+    color: #343a40;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.principle-card p {
+    color: #495057;
+    line-height: 1.5;
 }
 
 /* 周期表部分 */
 .periodic-table-section {
     background: white;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 15px;
     margin: 2rem 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e9ecef;
+}
+.periodic-table-section h3 {
+    color: #343a40;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
 
 .periodic-table-intro {
@@ -143,18 +183,33 @@
 
 .pt-info {
     background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
+    padding: 1.8rem;
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+}
+.pt-info h4 {
+    color: #343a40;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.pt-info ul {
+    padding-left: 1.2rem;
+}
+.pt-info li {
+    margin-bottom: 0.5rem;
+    color: #495057;
+    line-height: 1.5;
 }
 
 .pt-preview {
-    background: #e3f2fd;
-    padding: 1.5rem;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 1.8rem;
+    border-radius: 10px;
     min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #bbdefb;
 }
 
 /* 变化趋势网格 */
@@ -172,14 +227,25 @@
 .trend-item {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
+    padding: 1.8rem 1.5rem;
+    border-radius: 10px;
     text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+.trend-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
 }
 
 .trend-item h5 {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.trend-item p {
+    font-size: 1rem;
+    opacity: 0.9;
 }
 
 /* 简化周期表样式 */
@@ -376,9 +442,16 @@
 /* 元素性质对比表格 */
 .element-comparison {
     background: white;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 15px;
     margin: 2rem 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e9ecef;
+}
+.element-comparison h3 {
+    color: #343a40;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
 
 .comparison-table-container {
@@ -402,7 +475,15 @@
 .comparison-table th {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    font-weight: bold;
+    font-weight: 600;
+    padding: 1rem;
+    border: 1px solid #5a67d8;
+}
+
+.comparison-table td {
+    color: #343a40;
+    border: 1px solid #e9ecef;
+    padding: 0.9rem;
 }
 
 .comparison-table tr:nth-child(even) {
@@ -411,19 +492,22 @@
 
 .comparison-table tr:hover {
     background: #e3f2fd;
+    transition: background 0.2s ease;
 }
 
 .comparison-notes {
     background: #e8f5e8;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 8px;
-    border-left: 4px solid #4caf50;
-    margin-top: 1rem;
+    border-left: 5px solid #4caf50;
+    margin-top: 1.5rem;
+    border: 1px solid #c8e6c9;
 }
 
 .comparison-notes p {
     margin: 0;
     color: #2e7d32;
+    font-weight: 500;
 }
 
 /* 响应式设计 */

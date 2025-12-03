@@ -1,0 +1,843 @@
+/* 元素王国章节样式 */
+
+/* 章节头部 */
+.elements-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    color: white;
+}
+
+.elements-header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.elements-header .subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 标签页样式 */
+.elements-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.elements-tab {
+    padding: 12px 24px;
+    background: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #495057;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.elements-tab:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.elements-tab.active {
+    background: #667eea;
+    border-color: #667eea;
+    color: white;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2);
+}
+
+/* 标签内容区域 */
+.elements-tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.elements-tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 金属元素家族卡片 */
+.metal-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.metal-group-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.metal-group-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #667eea;
+}
+
+.metal-group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.metal-group-card h3 {
+    color: #343a40;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+}
+
+.metal-group-card .formula {
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+}
+
+.metal-properties h4 {
+    color: #495057;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.metal-properties ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.metal-properties li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e9ecef;
+    position: relative;
+    padding-left: 25px;
+}
+
+.metal-properties li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.metal-example {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #28a745;
+}
+
+.metal-example h4 {
+    color: #28a745;
+    margin-bottom: 8px;
+}
+
+/* 合金部分 */
+.alloy-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+}
+
+.alloy-section h3 {
+    color: #343a40;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.alloy-section > p {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.alloy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.alloy-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.alloy-card:hover {
+    border-color: #667eea;
+    transform: translateY(-3px);
+}
+
+.alloy-card h4 {
+    color: #343a40;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.alloy-card p {
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
+}
+
+.alloy-card .alloy-use {
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* 非金属元素卡片 */
+.nonmetal-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.nonmetal-group-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nonmetal-group-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #28a745;
+}
+
+.nonmetal-group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.nonmetal-group-card h3 {
+    color: #343a40;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+}
+
+.nonmetal-group-card .formula {
+    color: #28a745;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+}
+
+.nonmetal-properties h4 {
+    color: #495057;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.nonmetal-properties ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.nonmetal-properties li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e9ecef;
+    position: relative;
+    padding-left: 25px;
+}
+
+.nonmetal-properties li:before {
+    content: '●';
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.nonmetal-reactions {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #fd7e14;
+}
+
+.nonmetal-reactions h4 {
+    color: #fd7e14;
+    margin-bottom: 8px;
+}
+
+.nonmetal-reactions .reaction {
+    background: white;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    color: #495057;
+    text-align: center;
+    border: 1px dashed #dee2e6;
+}
+
+.nonmetal-applications {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #17a2b8;
+}
+
+.nonmetal-applications h4 {
+    color: #17a2b8;
+    margin-bottom: 8px;
+}
+
+.nonmetal-applications ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.nonmetal-applications li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #dee2e6;
+    position: relative;
+    padding-left: 25px;
+}
+
+.nonmetal-applications li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #17a2b8;
+    font-weight: bold;
+}
+
+/* 非金属元素趋势图表 */
+.nonmetal-trends {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.nonmetal-trends h3 {
+    color: #343a40;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.trend-chart {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.trend-item {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.trend-item h4 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.trend-item ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.trend-item li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #dee2e6;
+    position: relative;
+    padding-left: 25px;
+}
+
+.trend-item li:before {
+    content: '↘';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.trend-item:last-child li:before {
+    content: '↗';
+}
+
+/* 有机化学部分 */
+.carbon-intro {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.carbon-intro h3 {
+    color: #343a40;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.carbon-properties {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.carbon-property {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.carbon-property:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-5px);
+}
+
+.carbon-property:hover h4,
+.carbon-property:hover p {
+    color: white;
+}
+
+.carbon-property h4 {
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.carbon-property p {
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* 官能团识别 */
+.functional-groups {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.functional-groups h3 {
+    color: #343a40;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.functional-groups > p {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.functional-group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.func-group-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.func-group-card:hover {
+    border-color: #667eea;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.1);
+}
+
+.func-group-card[data-group="alkene"]:hover {
+    border-color: #28a745;
+}
+
+.func-group-card[data-group="alcohol"]:hover {
+    border-color: #17a2b8;
+}
+
+.func-group-card[data-group="aldehyde"]:hover {
+    border-color: #fd7e14;
+}
+
+.func-group-card[data-group="carboxylic"]:hover {
+    border-color: #dc3545;
+}
+
+.func-group-card h4 {
+    color: #343a40;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.func-formula {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.func-name {
+    color: #6c757d;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.func-props {
+    color: #495057;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* 同分异构体游戏 */
+.isomer-game {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.isomer-game h3 {
+    color: #343a40;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: start;
+}
+
+.game-instructions {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.game-instructions p {
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+.game-instructions ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.game-instructions li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #dee2e6;
+    position: relative;
+    padding-left: 25px;
+}
+
+.game-instructions li:before {
+    content: '🧪';
+    position: absolute;
+    left: 0;
+}
+
+.molecule-builder {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.atom-palette {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.atom {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: grab;
+    user-select: none;
+}
+
+.atom.carbon {
+    background: #343a40;
+    color: white;
+    border: 3px solid #212529;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.atom.hydrogen {
+    background: #6c757d;
+    color: white;
+    border: 3px solid #495057;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* 构建区域内的原子样式 */
+.build-area .atom {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+}
+
+.build-area .atom.carbon {
+    background: #212529;
+    border-color: #000;
+}
+
+.build-area .atom.hydrogen {
+    background: #495057;
+    border-color: #343a40;
+}
+
+.build-area {
+    min-height: 200px;
+    border: 2px dashed #dee2e6;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.build-area.drag-over {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+}
+
+#check-isomer {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+#check-isomer:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+#isomer-result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#isomer-result.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#isomer-result.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* 有机反应类型 */
+.organic-reactions {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.organic-reactions h3 {
+    color: #343a40;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.reaction-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.reaction-type {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.reaction-type:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reaction-type h4 {
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.reaction-type p {
+    color: #6c757d;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.reaction-example {
+    background: white;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    font-family: 'Courier New', monospace;
+    color: #495057;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .elements-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .elements-header .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .elements-tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .elements-tab {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    
+    .metal-groups,
+    .nonmetal-groups {
+        grid-template-columns: 1fr;
+    }
+    
+    .alloy-grid,
+    .functional-group-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .trend-chart {
+        grid-template-columns: 1fr;
+    }
+    
+    .carbon-properties {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .reaction-types {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .alloy-grid,
+    .functional-group-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .atom-palette {
+        flex-wrap: wrap;
+    }
+    
+    .atom {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+    }
+}
