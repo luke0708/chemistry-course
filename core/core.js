@@ -481,7 +481,7 @@ window.addEventListener('unhandledrejection', function(event) {
 
 // 初始化应用
 document.addEventListener('DOMContentLoaded', function () {
-    // 共享工具已经在core/index.html中加载，直接使用即可
+    // 共享工具已经在根目录index.html中加载，直接使用即可
     
     // 初始化导航
     NavigationManager.init();

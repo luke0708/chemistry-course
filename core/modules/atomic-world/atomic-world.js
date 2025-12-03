@@ -9,7 +9,7 @@ const AtomicWorld = {
     async init() {
         try {
             // 加载元素数据
-            this.elementsData = await Utils.loadJSON('../assets/elements.json');
+            this.elementsData = await Utils.loadJSON('assets/data/elements.json');
             
             // 初始化原子模型
             this.updateAtomModel('Li');
