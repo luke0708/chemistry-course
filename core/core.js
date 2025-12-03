@@ -381,7 +381,7 @@ const NavigationManager = {
 // 初始化应用
 document.addEventListener('DOMContentLoaded', function () {
     // 加载共享工具
-    Utils.loadCSS('shared/utils.js');
+    Utils.loadModule('shared/utils.js');
     Utils.loadModule('shared/constants.js');
     
     // 初始化导航
