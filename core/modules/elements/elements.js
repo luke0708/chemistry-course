@@ -57,6 +57,21 @@ const ElementsKingdom = {
         
         if (!buildArea) return;
 
+        // 添加连接线容器
+        const connectionsContainer = document.createElement('div');
+        connectionsContainer.className = 'connections-container';
+        connectionsContainer.style.position = 'absolute';
+        connectionsContainer.style.top = '0';
+        connectionsContainer.style.left = '0';
+        connectionsContainer.style.width = '100%';
+        connectionsContainer.style.height = '100%';
+        connectionsContainer.style.pointerEvents = 'none';
+        connectionsContainer.style.zIndex = '5';
+        buildArea.appendChild(connectionsContainer);
+
+        // 原子连接关系存储
+        let connections = [];
+
         // 为碳原子和氢原子添加拖动事件
         [...carbonAtoms, ...hydrogenAtoms].forEach(atom => {
             atom.addEventListener('dragstart', (e) => {
@@ -65,10 +80,14 @@ const ElementsKingdom = {
                 e.dataTransfer.setData('atom/html', atom.outerHTML);
                 e.dataTransfer.setData('atom/type', atomType);
                 atom.style.opacity = '0.5';
+                atom.style.transform = 'scale(0.9)';
+                atom.style.boxShadow = '0 8px 16px rgba(0,0,0,0.3)';
             });
             
             atom.addEventListener('dragend', () => {
                 atom.style.opacity = '1';
+                atom.style.transform = 'scale(1)';
+                atom.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
             });
         });
 
@@ -76,15 +95,45 @@ const ElementsKingdom = {
         buildArea.addEventListener('dragover', (e) => {
             e.preventDefault();
             buildArea.classList.add('drag-over');
+            
+            // 显示放置位置预览
+            const preview = document.createElement('div');
+            preview.className = 'drop-preview';
+            preview.style.position = 'absolute';
+            preview.style.left = (e.clientX - buildArea.getBoundingClientRect().left - 30) + 'px';
+            preview.style.top = (e.clientY - buildArea.getBoundingClientRect().top - 30) + 'px';
+            preview.style.width = '60px';
+            preview.style.height = '60px';
+            preview.style.border = '2px dashed #667eea';
+            preview.style.borderRadius = '50%';
+            preview.style.pointerEvents = 'none';
+            preview.style.zIndex = '1';
+            
+            // 移除之前的预览
+            const oldPreview = buildArea.querySelector('.drop-preview');
+            if (oldPreview) oldPreview.remove();
+            
+            buildArea.appendChild(preview);
         });
 
-        buildArea.addEventListener('dragleave', () => {
-            buildArea.classList.remove('drag-over');
+        buildArea.addEventListener('dragleave', (e) => {
+            // 只有当鼠标离开构建区域时才移除drag-over类
+            const rect = buildArea.getBoundingClientRect();
+            if (e.clientX <= rect.left || e.clientX >= rect.right || 
+                e.clientY <= rect.top || e.clientY >= rect.bottom) {
+                buildArea.classList.remove('drag-over');
+                const preview = buildArea.querySelector('.drop-preview');
+                if (preview) preview.remove();
+            }
         });
 
         buildArea.addEventListener('drop', (e) => {
             e.preventDefault();
             buildArea.classList.remove('drag-over');
+            
+            // 移除放置预览
+            const preview = buildArea.querySelector('.drop-preview');
+            if (preview) preview.remove();
             
             const atomType = e.dataTransfer.getData('text/plain');
             const atomHTML = e.dataTransfer.getData('atom/html');
@@ -96,6 +145,7 @@ const ElementsKingdom = {
             const newAtom = tempDiv.firstChild;
             
             newAtom.style.position = 'absolute';
+            newAtom.style.zIndex = '10';
             // 计算相对于buildArea的位置
             const rect = buildArea.getBoundingClientRect();
             const x = e.clientX - rect.left - 30;
@@ -105,6 +155,12 @@ const ElementsKingdom = {
             newAtom.style.opacity = '1';
             newAtom.draggable = true;
             
+            // 为新原子添加拖拽动画
+            newAtom.style.animation = 'atom-drop 0.3s ease-out';
+            
+            // 检查自动连接
+            this.checkAutoConnections(newAtom, buildArea, connectionsContainer);
+            
             // 为新原子添加拖动事件
             newAtom.addEventListener('dragstart', (event) => {
                 const thisAtomType = newAtom.classList.contains('carbon') ? 'C' : 'H';
@@ -112,11 +168,33 @@ const ElementsKingdom = {
                 event.dataTransfer.setData('atom/html', newAtom.outerHTML);
                 event.dataTransfer.setData('atom/type', thisAtomType);
                 newAtom.style.opacity = '0.5';
+                newAtom.style.transform = 'scale(0.9)';
+                newAtom.style.boxShadow = '0 8px 16px rgba(0,0,0,0.3)';
+                
+                // 移除该原子的所有连接线
+                this.removeAtomConnections(newAtom, connectionsContainer);
             });
             
             newAtom.addEventListener('dragend', () => {
                 newAtom.style.opacity = '1';
+                newAtom.style.transform = 'scale(1)';
+                newAtom.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+                newAtom.style.animation = 'none';
+                
+                // 检查新的连接
+                setTimeout(() => {
+                    this.checkAutoConnections(newAtom, buildArea, connectionsContainer);
+                }, 100);
             });
+            
+            // 添加点击事件删除原子
+            newAtom.addEventListener('dblclick', () => {
+                this.removeAtomConnections(newAtom, connectionsContainer);
+                newAtom.remove();
+            });
+            
+            // 添加右键菜单提示
+            newAtom.title = '双击删除原子';
             
             buildArea.appendChild(newAtom);
             
@@ -127,9 +205,12 @@ const ElementsKingdom = {
         // 检查按钮点击事件
         if (checkBtn) {
             checkBtn.addEventListener('click', () => {
-                this.checkIsomerStructure(buildArea, resultDiv);
+                this.checkIsomerStructure(buildArea, resultDiv, connectionsContainer);
             });
         }
+
+        // 添加动画样式
+        this.addIsomerGameStyles();
     },
 
     // 检查同分异构体结构
@@ -198,6 +279,155 @@ const ElementsKingdom = {
             }
         }
         return false;
+    },
+
+    // 检查自动连接
+    checkAutoConnections(atom, buildArea, connectionsContainer) {
+        const allAtoms = buildArea.querySelectorAll('.atom');
+        const rect1 = atom.getBoundingClientRect();
+        const center1 = {
+            x: rect1.left + rect1.width / 2,
+            y: rect1.top + rect1.height / 2
+        };
+        
+        // 检查与其他原子的距离
+        allAtoms.forEach(otherAtom => {
+            if (otherAtom === atom) return;
+            
+            const rect2 = otherAtom.getBoundingClientRect();
+            const center2 = {
+                x: rect2.left + rect2.width / 2,
+                y: rect2.top + rect2.height / 2
+            };
+            
+            const distance = Math.sqrt(
+                Math.pow(center1.x - center2.x, 2) + 
+                Math.pow(center1.y - center2.y, 2)
+            );
+            
+            // 如果距离小于70px，创建连接线
+            if (distance < 70) {
+                this.createConnectionLine(atom, otherAtom, connectionsContainer);
+            }
+        });
+    },
+
+    // 创建连接线
+    createConnectionLine(atom1, atom2, connectionsContainer) {
+        // 检查是否已经存在连接线
+        const existingLine = connectionsContainer.querySelector(`[data-atoms="${atom1.id || atom1.dataset.id}-${atom2.id || atom2.dataset.id}"]`);
+        if (existingLine) return;
+        
+        const line = document.createElement('div');
+        line.className = 'bond-line';
+        
+        // 如果没有ID，创建临时ID
+        if (!atom1.dataset.id) atom1.dataset.id = 'atom_' + Date.now() + Math.random();
+        if (!atom2.dataset.id) atom2.dataset.id = 'atom_' + Date.now() + Math.random();
+        
+        line.dataset.atoms = `${atom1.dataset.id}-${atom2.dataset.id}`;
+        
+        // 更新连接线位置
+        const updateLinePosition = () => {
+            const rect1 = atom1.getBoundingClientRect();
+            const rect2 = atom2.getBoundingClientRect();
+            const buildAreaRect = connectionsContainer.getBoundingClientRect();
+            
+            const x1 = rect1.left + rect1.width / 2 - buildAreaRect.left;
+            const y1 = rect1.top + rect1.height / 2 - buildAreaRect.top;
+            const x2 = rect2.left + rect2.width / 2 - buildAreaRect.left;
+            const y2 = rect2.top + rect2.height / 2 - buildAreaRect.top;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            line.style.position = 'absolute';
+            line.style.left = x1 + 'px';
+            line.style.top = y1 + 'px';
+            line.style.width = length + 'px';
+            line.style.height = '3px';
+            line.style.backgroundColor = atom1.classList.contains('carbon') && atom2.classList.contains('carbon') ? '#2e7d32' : '#6c757d';
+            line.style.transformOrigin = '0 0';
+            line.style.transform = `rotate(${angle}deg)`;
+            line.style.zIndex = '1';
+            line.style.borderRadius = '2px';
+        };
+        
+        updateLinePosition();
+        connectionsContainer.appendChild(line);
+        
+        // 监听原子移动更新连接线
+        const observer = new MutationObserver(updateLinePosition);
+        observer.observe(atom1, { attributes: true, attributeFilter: ['style'] });
+        observer.observe(atom2, { attributes: true, attributeFilter: ['style'] });
+        
+        // 存储观察器以便清理
+        line.dataset.observer = observer;
+    },
+
+    // 移除原子的所有连接线
+    removeAtomConnections(atom, connectionsContainer) {
+        if (!atom.dataset.id) return;
+        
+        const lines = connectionsContainer.querySelectorAll('.bond-line');
+        lines.forEach(line => {
+            if (line.dataset.atoms.includes(atom.dataset.id)) {
+                // 停止观察
+                if (line.dataset.observer) {
+                    const observer = JSON.parse(line.dataset.observer);
+                    observer.disconnect();
+                }
+                line.remove();
+            }
+        });
+    },
+
+    // 添加同分异构体游戏样式
+    addIsomerGameStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes atom-drop {
+                0% {
+                    transform: scale(0.5);
+                    opacity: 0;
+                }
+                70% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+            
+            .bond-line {
+                transition: all 0.3s ease;
+            }
+            
+            .atom.carbon {
+                background: #212529;
+                color: white;
+                border: 3px solid #000;
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            }
+            
+            .atom.hydrogen {
+                background: #495057;
+                color: white;
+                border: 3px solid #343a40;
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            }
+            
+            .build-area .atom {
+                cursor: move;
+            }
+            
+            .build-area .atom:hover {
+                transform: scale(1.1);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            }
+        `;
+        document.head.appendChild(style);
     },
 
     // 初始化官能团卡片交互

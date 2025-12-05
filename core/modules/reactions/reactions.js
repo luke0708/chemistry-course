@@ -1225,3 +1225,17 @@ const Reactions = {
 
 // 导出模块
 window.Reactions = Reactions;
+
+// 模块加载完成后自动初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof Reactions !== 'undefined' && Reactions.init) {
+            Reactions.init();
+        }
+    });
+} else {
+    // 如果DOM已经加载完成，直接初始化
+    if (typeof Reactions !== 'undefined' && Reactions.init) {
+        Reactions.init();
+    }
+}

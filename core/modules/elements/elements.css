@@ -721,6 +721,226 @@
     border: 1px solid #f5c6cb;
 }
 
+/* 周期表预览 */
+.periodic-table-preview {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.periodic-table-preview h3 {
+    color: #343a40;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.periodic-table-preview > p {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 25px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.periodic-table-mini {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 3px;
+    margin: 25px auto;
+    max-width: 900px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.periodic-table-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: default;
+    position: relative;
+}
+
+.periodic-table-cell:hover {
+    transform: scale(1.2);
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.periodic-table-cell.metal {
+    background: #ffd8a8;
+    color: #212529;
+    border: 1px solid #ffa94d;
+}
+
+.periodic-table-cell.alkali-metal {
+    background: #ff6b6b;
+    color: white;
+    border: 1px solid #ff5252;
+}
+
+.periodic-table-cell.alkaline-earth {
+    background: #ffa726;
+    color: white;
+    border: 1px solid #ff9800;
+}
+
+.periodic-table-cell.transition-metal {
+    background: #42a5f5;
+    color: white;
+    border: 1px solid #2196f3;
+}
+
+.periodic-table-cell.other-metal {
+    background: #26c6da;
+    color: white;
+    border: 1px solid #00bcd4;
+}
+
+.periodic-table-cell.nonmetal {
+    background: #66bb6a;
+    color: white;
+    border: 1px solid #4caf50;
+}
+
+.periodic-table-cell.halogen {
+    background: #ab47bc;
+    color: white;
+    border: 1px solid #9c27b0;
+}
+
+.periodic-table-cell.noble-gas {
+    background: #78909c;
+    color: white;
+    border: 1px solid #607d8b;
+}
+
+.periodic-table-cell.empty {
+    background: transparent;
+    border: 1px dashed #b0bec5;
+}
+
+.periodic-table-cell .element-number {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 0.5rem;
+    opacity: 0.8;
+}
+
+.periodic-table-info {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.periodic-table-key {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.key-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    background: #f8f9fa;
+    border-radius: 20px;
+    border: 1px solid #dee2e6;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.key-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
+.key-color.alkali-metal {
+    background: #ff6b6b;
+}
+
+.key-color.alkaline-earth {
+    background: #ffa726;
+}
+
+.key-color.transition-metal {
+    background: #42a5f5;
+}
+
+.key-color.other-metal {
+    background: #26c6da;
+}
+
+/* 金属元素动画增强 */
+.metal-group-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.metal-group-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 80%
+    );
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.metal-group-card:hover::after {
+    top: -20%;
+    left: -20%;
+    transform: rotate(0deg);
+}
+
+.alloy-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.alloy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.alloy-card:hover::before {
+    left: 100%;
+}
+
 /* 有机反应类型 */
 .organic-reactions {
     background: white;
