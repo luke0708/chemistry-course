@@ -2,7 +2,15 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCHLZ9M2NG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-VCHLZ9M2NG');
+    </script>
     <title>化学课程 - 交互式学习系统</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -21,6 +29,7 @@
                 <li><a href="#chemical-bonds" onclick="showSection('chemical-bonds')">化学键</a></li>
                 <li><a href="#reactions" onclick="showSection('reactions')">反应原理</a></li>
                 <li><a href="#elements" onclick="showSection('elements')">元素王国</a></li>
+                <li><button id="stats-btn" class="stats-btn" onclick="showStatsModal()">📊 学习档案</button></li>
             </ul>
         </div>
     </nav>
@@ -329,6 +338,244 @@
 
     <script src="core/shared/utils.js"></script>
     <script src="core/shared/constants.js"></script>
+    <script src="core/shared/analytics.js"></script>
     <script src="core/core.js?v=1.0.0"></script>
+    <!-- 学习统计模态框 -->
+    <div id="stats-modal" class="stats-modal">
+        <div class="stats-modal-content">
+            <div class="stats-modal-header">
+                <h2>📊 我的学习档案</h2>
+                <button class="stats-modal-close" onclick="closeStatsModal()">×</button>
+            </div>
+            <div class="stats-modal-body">
+                <div class="stats-section">
+                    <h3>访客身份</h3>
+                    <div class="stats-card">
+                        <div class="stats-row">
+                            <span class="stats-label">访客ID：</span>
+                            <span id="stats-user-id" class="stats-value">加载中...</span>
+                        </div>
+                        <div class="stats-row">
+                            <span class="stats-label">首次访问：</span>
+                            <span id="stats-first-visit" class="stats-value">加载中...</span>
+                        </div>
+                        <div class="stats-row">
+                            <span class="stats-label">最近访问：</span>
+                            <span id="stats-last-visit" class="stats-value">加载中...</span>
+                        </div>
+                        <div class="stats-row">
+                            <span class="stats-label">总访问次数：</span>
+                            <span id="stats-total-visits" class="stats-value">加载中...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>学习时长统计</h3>
+                    <div class="stats-card">
+                        <div class="stats-row">
+                            <span class="stats-label">总学习时长：</span>
+                            <span id="stats-total-time" class="stats-value highlight">加载中...</span>
+                        </div>
+                        <div class="stats-chart" id="stats-chart">
+                            <!-- 柱状图将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>各章节学习情况</h3>
+                    <div class="stats-card">
+                        <div id="stats-chapters-list" class="stats-chapters-list">
+                            <!-- 章节列表将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-actions">
+                    <button class="stats-btn-secondary" onclick="resetStatsData()">🔄 重置学习数据</button>
+                    <button class="stats-btn-secondary" onclick="refreshStats()">🔄 刷新数据</button>
+                </div>
+
+                <div class="stats-note">
+                    <p>💡 提示：所有数据仅存储在您的浏览器本地，不会上传到任何服务器。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 统计模态框相关脚本 -->
+    <script>
+        // 显示统计模态框
+        function showStatsModal() {
+            const modal = document.getElementById('stats-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                refreshStats(); // 打开时刷新数据
+            }
+        }
+
+        // 关闭统计模态框
+        function closeStatsModal() {
+            const modal = document.getElementById('stats-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('stats-modal');
+            if (event.target === modal) {
+                closeStatsModal();
+            }
+        });
+
+        // 刷新统计数据
+        function refreshStats() {
+            if (!window.Analytics) {
+                console.warn('Analytics模块未加载');
+                return;
+            }
+
+            const stats = Analytics.getStats();
+            if (!stats) {
+                console.warn('无法获取统计数据');
+                return;
+            }
+
+            // 更新基本信息
+            document.getElementById('stats-user-id').textContent = stats.userId || '未知';
+            document.getElementById('stats-first-visit').textContent = 
+                stats.firstVisit ? new Date(stats.firstVisit).toLocaleString('zh-CN') : '未知';
+            document.getElementById('stats-last-visit').textContent = 
+                stats.lastVisit ? new Date(stats.lastVisit).toLocaleString('zh-CN') : '未知';
+            document.getElementById('stats-total-visits').textContent = stats.totalVisits || 0;
+            document.getElementById('stats-total-time').textContent = stats.formattedTotalTime || '0分钟';
+
+            // 生成章节柱状图
+            renderStatsChart(stats.chapters);
+
+            // 生成章节列表
+            renderChaptersList(stats.chapters);
+        }
+
+        // 渲染统计柱状图
+        function renderStatsChart(chapters) {
+            const chartContainer = document.getElementById('stats-chart');
+            if (!chartContainer) return;
+
+            // 清除现有内容
+            chartContainer.innerHTML = '';
+
+            // 找到最大时间用于比例计算
+            const maxTime = Math.max(...Object.values(chapters).map(c => c.time), 1);
+            const chapterNames = {
+                'home': '首页',
+                'atomic-world': '原子世界',
+                'chemical-bonds': '化学键',
+                'reactions': '反应原理',
+                'elements': '元素王国'
+            };
+
+            // 创建柱状图
+            Object.entries(chapters).forEach(([chapterId, data]) => {
+                if (!data || data.time === undefined) return;
+
+                const barContainer = document.createElement('div');
+                barContainer.className = 'stats-bar-container';
+
+                const barLabel = document.createElement('div');
+                barLabel.className = 'stats-bar-label';
+                barLabel.textContent = chapterNames[chapterId] || chapterId;
+
+                const barWrapper = document.createElement('div');
+                barWrapper.className = 'stats-bar-wrapper';
+
+                const bar = document.createElement('div');
+                bar.className = 'stats-bar';
+                bar.style.width = `${(data.time / maxTime) * 100}%`;
+
+                const barValue = document.createElement('div');
+                barValue.className = 'stats-bar-value';
+                barValue.textContent = formatTimeShort(data.time);
+
+                barWrapper.appendChild(bar);
+                barWrapper.appendChild(barValue);
+                barContainer.appendChild(barLabel);
+                barContainer.appendChild(barWrapper);
+                chartContainer.appendChild(barContainer);
+            });
+        }
+
+        // 渲染章节列表
+        function renderChaptersList(chapters) {
+            const listContainer = document.getElementById('stats-chapters-list');
+            if (!listContainer) return;
+
+            // 清除现有内容
+            listContainer.innerHTML = '';
+
+            const chapterNames = {
+                'home': '首页',
+                'atomic-world': '原子世界',
+                'chemical-bonds': '化学键',
+                'reactions': '反应原理',
+                'elements': '元素王国'
+            };
+
+            Object.entries(chapters).forEach(([chapterId, data]) => {
+                if (!data) return;
+
+                const listItem = document.createElement('div');
+                listItem.className = 'stats-chapter-item';
+
+                const chapterName = document.createElement('span');
+                chapterName.className = 'stats-chapter-name';
+                chapterName.textContent = chapterNames[chapterId] || chapterId;
+
+                const chapterStats = document.createElement('span');
+                chapterStats.className = 'stats-chapter-stats';
+                chapterStats.textContent = `${formatTimeShort(data.time)} (访问${data.visits}次)`;
+
+                listItem.appendChild(chapterName);
+                listItem.appendChild(chapterStats);
+                listContainer.appendChild(listItem);
+            });
+        }
+
+        // 格式化时间（简短版）
+        function formatTimeShort(seconds) {
+            if (seconds < 60) {
+                return `${seconds}秒`;
+            } else if (seconds < 3600) {
+                return `${Math.floor(seconds / 60)}分钟`;
+            } else {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                return `${hours}小时${minutes}分钟`;
+            }
+        }
+
+        // 重置统计数据
+        function resetStatsData() {
+            if (!window.Analytics) {
+                alert('Analytics模块未加载');
+                return;
+            }
+
+            if (confirm('确定要重置所有学习数据吗？此操作不可撤销。')) {
+                Analytics.resetData();
+                refreshStats();
+                alert('学习数据已重置！');
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 确保Analytics已初始化
+            setTimeout(refreshStats, 1000);
+        });
+    </script>
 </body>
 </html>

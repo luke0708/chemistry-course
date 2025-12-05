@@ -715,6 +715,263 @@ body {
     color: #2e7d32;
 }
 
+/* 学习统计相关样式 */
+
+/* 统计按钮 */
+.stats-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.stats-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* 统计模态框 */
+.stats-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.stats-modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stats-modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stats-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.stats-modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.stats-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.stats-modal-body {
+    padding: 2rem;
+}
+
+/* 统计部分 */
+.stats-section {
+    margin-bottom: 2rem;
+}
+
+.stats-section h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 0.5rem;
+}
+
+/* 统计卡片 */
+.stats-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.stats-row:last-child {
+    border-bottom: none;
+}
+
+.stats-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.stats-value {
+    color: #333;
+    font-weight: 600;
+}
+
+.stats-value.highlight {
+    color: #667eea;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* 统计柱状图 */
+.stats-chart {
+    margin-top: 1.5rem;
+}
+
+.stats-bar-container {
+    margin-bottom: 1rem;
+}
+
+.stats-bar-label {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.stats-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stats-bar {
+    height: 25px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 12px;
+    min-width: 20px;
+    transition: width 0.5s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.stats-bar-value {
+    color: #333;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+/* 章节列表 */
+.stats-chapters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.stats-chapter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.stats-chapter-item:hover {
+    background: rgba(227, 242, 253, 0.8);
+    transform: translateX(5px);
+}
+
+.stats-chapter-name {
+    color: #333;
+    font-weight: 500;
+}
+
+.stats-chapter-stats {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* 统计操作按钮 */
+.stats-actions {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    justify-content: center;
+}
+
+.stats-btn-secondary {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.stats-btn-secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* 统计提示 */
+.stats-note {
+    background: rgba(232, 245, 232, 0.8);
+    border-left: 4px solid #4caf50;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.stats-note p {
+    margin: 0;
+    color: #2e7d32;
+    font-size: 0.9rem;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .nav-container {
@@ -724,6 +981,13 @@ body {
     
     .nav-links {
         gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .stats-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
     }
     
     .hero-content h1 {
@@ -757,6 +1021,41 @@ body {
     .comparison-table th,
     .comparison-table td {
         padding: 0.5rem;
+    }
+    
+    .stats-modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .stats-modal-body {
+        padding: 1.5rem;
+    }
+    
+    .stats-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .stats-bar-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .stats-bar-value {
+        text-align: left;
+    }
+    
+    .stats-actions {
+        flex-direction: column;
+    }
+    
+    .stats-chapter-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
     }
 }
 

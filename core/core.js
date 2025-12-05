@@ -244,6 +244,11 @@ const SectionManager = {
         // 隐藏当前章节
         this.hideCurrentSection();
 
+        // 跟踪章节切换（学习统计）
+        if (window.Analytics) {
+            Analytics.trackPageView(sectionId);
+        }
+
         // 特殊处理：首页不需要模块加载
         if (sectionId === 'home') {
             this.displaySection(sectionId);
@@ -450,6 +455,13 @@ window.addEventListener('unhandledrejection', function(event) {
 // 初始化应用
 document.addEventListener('DOMContentLoaded', function () {
     // 共享工具已经在根目录index.html中加载，直接使用即可
+    
+    // 初始化学习统计系统
+    if (window.Analytics) {
+        Analytics.init();
+    } else {
+        console.warn('Analytics模块未加载，学习统计功能不可用');
+    }
     
     // 初始化导航
     NavigationManager.init();

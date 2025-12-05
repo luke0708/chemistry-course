@@ -1,3 +1,4 @@
 {
-    "liveServer.settings.AdvanceCustomBrowserCmdLine": ""
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+    "chatgpt.openOnStartup": true
 }
