@@ -1,37 +1,5 @@
 // 核心框架功能 - 模块加载和章节切换
 
-// 化学键应用案例加载函数（用于首页）
-window.loadAndShowApplication = async function(application) {
-    // 如果showApplication函数已经存在，直接调用
-    if (typeof window.showApplication === 'function') {
-        window.showApplication(application);
-        return;
-    }
-
-    // 动态加载CSS
-    const cssPath = 'core/modules/chemical-bonds/chemical-bonds.css';
-    const jsPath = 'core/modules/chemical-bonds/chemical-bonds.js';
-
-    // 加载CSS
-    const cssLink = document.createElement('link');
-    cssLink.rel = 'stylesheet';
-    cssLink.href = cssPath;
-    document.head.appendChild(cssLink);
-
-    // 加载JS
-    const script = document.createElement('script');
-    script.src = jsPath;
-    script.onload = function() {
-        // JS加载完成后，调用showApplication
-        if (typeof window.showApplication === 'function') {
-            window.showApplication(application);
-        } else {
-            console.error('showApplication function not found after loading chemical-bonds.js');
-        }
-    };
-    document.head.appendChild(script);
-};
-
 // 模块状态管理
 const ModuleManager = {
     loadedModules: new Set(),
@@ -52,7 +20,7 @@ const ModuleManager = {
         'chemical-bonds': {
             css: 'core/modules/chemical-bonds/chemical-bonds.css',
             js: 'core/modules/chemical-bonds/chemical-bonds.js',
-            html: ''  // 内容已内嵌在index.html中
+            html: 'core/modules/chemical-bonds/chemical-bonds.html'
         },
         'reactions': {
             css: 'core/modules/reactions/reactions.css',
